@@ -1,0 +1,267 @@
+@import '@fontsource/chakra-petch/500.css';
+@import '@fontsource/chakra-petch/600.css';
+@import '@fontsource/chakra-petch/700.css';
+@import '@fontsource/ibm-plex-sans/400.css';
+@import '@fontsource/ibm-plex-sans/500.css';
+@import '@fontsource/ibm-plex-sans/600.css';
+@import '@fontsource/ibm-plex-mono/400.css';
+@import '@fontsource/ibm-plex-mono/500.css';
+@import 'tailwindcss';
+@import '@xyflow/react/dist/style.css';
+
+/* ── mission-control theme ─────────────────────────────────────
+   deep void base · phosphor-teal primary · amber = human gate ·
+   rose = failure. Chakra Petch for headings/instruments, IBM Plex
+   for body and data. */
+@theme {
+  --font-sans: 'IBM Plex Sans', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+  --font-display: 'Chakra Petch', ui-sans-serif, sans-serif;
+
+  --color-void-950: #04080b;
+  --color-void-900: #081016;
+  --color-void-850: #0b161e;
+  --color-void-800: #102028;
+
+  --color-accent-300: #5eead4;
+  --color-accent-400: #2dd4bf;
+  --color-accent-500: #14b8a6;
+  --color-accent-600: #0d9488;
+
+  /* remap slate so every existing utility rides the teal-tinted void ramp */
+  --color-slate-950: #04080b;
+  --color-slate-900: #0b161e;
+  --color-slate-800: #16262f;
+  --color-slate-700: #243a44;
+  --color-slate-600: #3b5560;
+  --color-slate-500: #5d7a85;
+  --color-slate-400: #8aa5ae;
+  --color-slate-300: #b4c9d0;
+  --color-slate-200: #d5e3e7;
+  --color-slate-100: #ecf4f6;
+
+  /* the old indigo accents now emit phosphor teal */
+  --color-indigo-300: #5eead4;
+  --color-indigo-400: #2dd4bf;
+  --color-indigo-500: #14b8a6;
+  --color-indigo-600: #0f9d8f;
+  --color-indigo-900: #0a3f3a;
+
+  --animate-rise: rise 0.35s cubic-bezier(0.22, 1, 0.36, 1) both;
+  --animate-blink: blink 1.4s steps(2, start) infinite;
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0.35;
+  }
+}
+
+@keyframes sweep {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(250%);
+  }
+}
+
+:root {
+  color-scheme: dark;
+  /* halo behind the human-gate card — retinted per theme below */
+  --gate-glow: rgba(245, 158, 11, 0.4);
+}
+
+body {
+  @apply bg-slate-950 text-slate-200 antialiased;
+  font-family: var(--font-sans);
+  /* layered atmosphere: phosphor glow top-left, faint blueprint grid */
+  background-image:
+    radial-gradient(1100px 500px at 12% -8%, rgba(20, 184, 166, 0.07), transparent 60%),
+    radial-gradient(900px 600px at 95% 110%, rgba(20, 184, 166, 0.04), transparent 55%),
+    linear-gradient(rgba(94, 234, 212, 0.022) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(94, 234, 212, 0.022) 1px, transparent 1px);
+  background-size:
+    100% 100%,
+    100% 100%,
+    34px 34px,
+    34px 34px;
+  background-attachment: fixed;
+}
+
+h1,
+h2,
+.font-display {
+  font-family: var(--font-display);
+  letter-spacing: 0.01em;
+}
+
+code,
+pre {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-slate-700) transparent;
+}
+
+::selection {
+  background: rgba(20, 184, 166, 0.35);
+}
+
+/* running sweep bar for live instruments */
+.sweep-track {
+  @apply relative h-0.5 overflow-hidden rounded bg-slate-800;
+}
+.sweep-track::after {
+  content: '';
+  @apply absolute inset-y-0 w-2/5 rounded;
+  background: linear-gradient(90deg, transparent, var(--color-accent-400), transparent);
+  animation: sweep 1.6s ease-in-out infinite;
+}
+
+/* a2ui surface content inherits our theme */
+.a2ui-answer {
+  @apply text-sm text-slate-200;
+}
+.a2ui-answer h1,
+.a2ui-answer h2,
+.a2ui-answer h3 {
+  @apply font-display text-accent-300;
+}
+
+/* ── themes (spec §8.7) ─────────────────────────────────────────
+   default = the dark mission-control @theme above. The brand themes are
+   LIGHT, matching each product's real look: Claude's warm ivory paper,
+   ChatGPT's white/black minimalism, Gemini's white + Google blue. The app
+   consumes the ramp semantically (950 = deepest surface … 100 = brightest
+   text), so each light theme simply inverts the ramp — every component
+   restyles coherently with no markup changes. Applied via
+   <html data-theme="..."> and persisted in localStorage. */
+
+:root[data-theme='anthropic'],
+:root[data-theme='openai'],
+:root[data-theme='google'] {
+  /* the brand themes are light: flip color-scheme so every light-dark()
+     consumer — the a2ui answer cards, native form controls — follows */
+  color-scheme: light;
+}
+:root[data-theme='anthropic'] body,
+:root[data-theme='openai'] body,
+:root[data-theme='google'] body {
+  background-image: none;
+}
+
+/* anthropic — Claude: warm ivory paper, dark warm text, terracotta */
+:root[data-theme='anthropic'] {
+  --color-void-950: #faf9f5;
+  --color-void-900: #f4f2ec;
+  --color-void-850: #efece3;
+  --color-void-800: #e8e4d8;
+  --color-accent-300: #a8552e;
+  --color-accent-400: #c65d3b;
+  --color-accent-500: #cc785c;
+  --color-accent-600: #a85b38;
+  --color-slate-950: #faf9f5;
+  --color-slate-900: #f0eee6;
+  --color-slate-800: #ddd8cb;
+  --color-slate-700: #c7c1b1;
+  --color-slate-600: #8f887a;
+  --color-slate-500: #6f6a5e;
+  --color-slate-400: #57534a;
+  --color-slate-300: #3f3c35;
+  --color-slate-200: #2b2924;
+  --color-slate-100: #1a1915;
+  --color-indigo-300: #a8552e;
+  --color-indigo-400: #c65d3b;
+  --color-indigo-500: #cc785c;
+  --color-indigo-600: #a85b38;
+  --color-indigo-900: #ecc7b5;
+  /* attention/gate ramp: keep warm amber (Claude paper suits it), darkened for contrast */
+  --color-amber-100: #451a03;
+  --color-amber-200: #92400e;
+  --color-amber-300: #b45309;
+  --color-amber-400: #a16207;
+  --gate-glow: rgba(245, 158, 11, 0.35);
+}
+
+/* openai — ChatGPT: white surfaces, near-black text, monochrome accents */
+:root[data-theme='openai'] {
+  --color-void-950: #ffffff;
+  --color-void-900: #f7f7f8;
+  --color-void-850: #f0f0f1;
+  --color-void-800: #e8e8ea;
+  --color-accent-300: #2d2d2d;
+  --color-accent-400: #1a1a1a;
+  --color-accent-500: #0d0d0d;
+  --color-accent-600: #000000;
+  --color-slate-950: #ffffff;
+  --color-slate-900: #f4f4f5;
+  --color-slate-800: #e4e4e7;
+  --color-slate-700: #d4d4d8;
+  --color-slate-600: #a1a1aa;
+  --color-slate-500: #71717a;
+  --color-slate-400: #52525b;
+  --color-slate-300: #3f3f46;
+  --color-slate-200: #27272a;
+  --color-slate-100: #0d0d0d;
+  --color-indigo-300: #2d2d2d;
+  --color-indigo-400: #1a1a1a;
+  --color-indigo-500: #0d0d0d;
+  --color-indigo-600: #000000;
+  --color-indigo-900: #d4d4d8;
+  /* attention/gate ramp: ChatGPT is monochrome — the gate goes near-black on white */
+  --color-amber-100: #0d0d0d;
+  --color-amber-200: #27272a;
+  --color-amber-300: #3f3f46;
+  --color-amber-400: #18181b;
+  --color-amber-500: #52525b;
+  --gate-glow: rgba(0, 0, 0, 0.15);
+}
+
+/* google — Gemini: white + light blue-gray surfaces, Google blue */
+:root[data-theme='google'] {
+  --color-void-950: #ffffff;
+  --color-void-900: #f0f4f9;
+  --color-void-850: #e9eef6;
+  --color-void-800: #dde3ea;
+  --color-accent-300: #1a73e8;
+  --color-accent-400: #1b66ca;
+  --color-accent-500: #0b57d0;
+  --color-accent-600: #0842a0;
+  --color-slate-950: #ffffff;
+  --color-slate-900: #f1f4f8;
+  --color-slate-800: #dde3ea;
+  --color-slate-700: #c4cbd4;
+  --color-slate-600: #9aa0a6;
+  --color-slate-500: #747c85;
+  --color-slate-400: #5f6368;
+  --color-slate-300: #444746;
+  --color-slate-200: #2d2f31;
+  --color-slate-100: #1f1f1f;
+  --color-indigo-300: #1a73e8;
+  --color-indigo-400: #1b66ca;
+  --color-indigo-500: #0b57d0;
+  --color-indigo-600: #0842a0;
+  --color-indigo-900: #c2d7f8;
+  /* attention/gate ramp: Gemini leads with Google blue, so the gate does too */
+  --color-amber-100: #041e49;
+  --color-amber-200: #0842a0;
+  --color-amber-300: #0b57d0;
+  --color-amber-400: #1b66ca;
+  --color-amber-500: #1a73e8;
+  --gate-glow: rgba(26, 115, 232, 0.35);
+}

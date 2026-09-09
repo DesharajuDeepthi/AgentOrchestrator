@@ -1,0 +1,92 @@
+{
+  "summary": {
+    "config": "semantic",
+    "passed": 7,
+    "total": 7,
+    "by_ability": {
+      "information_extraction": "2/2",
+      "multi_session": "1/1",
+      "knowledge_update": "1/1",
+      "temporal": "1/1",
+      "abstention": "1/1",
+      "preference": "1/1"
+    },
+    "question_input_tokens": 31222,
+    "question_output_tokens": 6686,
+    "setup_input_tokens": 26469,
+    "mean_question_latency_s": 25.1,
+    "memories_active": 7
+  },
+  "detail": [
+    {
+      "probe": "single_fact_recall",
+      "ability": "information_extraction",
+      "passed": true,
+      "reason": "ok",
+      "answer_head": "Your dog's name is Biscuit (per memory episode 698e80e4).",
+      "input_tokens": 4098,
+      "output_tokens": 978,
+      "latency_s": 26.3
+    },
+    {
+      "probe": "second_fact_recall",
+      "ability": "information_extraction",
+      "passed": true,
+      "reason": "ok",
+      "answer_head": "Your preferred code editor is Neovim (memory b6946a54).",
+      "input_tokens": 4220,
+      "output_tokens": 307,
+      "latency_s": 10.2
+    },
+    {
+      "probe": "multi_session_reasoning",
+      "ability": "multi_session",
+      "passed": true,
+      "reason": "ok",
+      "answer_head": "**Q3 Revenue Target:** $2 million (fact 8d3dd287) **Q3 Revenue Actual:** $1.5 million (episode 58f0b488) **Did we hit the target?** No \u2014 revenue came in $500K s",
+      "input_tokens": 4407,
+      "output_tokens": 1693,
+      "latency_s": 39.5
+    },
+    {
+      "probe": "knowledge_update",
+      "ability": "knowledge_update",
+      "passed": true,
+      "reason": "ok",
+      "answer_head": "release-2026",
+      "input_tokens": 4482,
+      "output_tokens": 367,
+      "latency_s": 11.1
+    },
+    {
+      "probe": "temporal_before_after",
+      "ability": "temporal",
+      "passed": true,
+      "reason": "ok",
+      "answer_head": "main",
+      "input_tokens": 4507,
+      "output_tokens": 344,
+      "latency_s": 12.2
+    },
+    {
+      "probe": "abstention",
+      "ability": "abstention",
+      "passed": true,
+      "reason": "ok",
+      "answer_head": "I don't have any record of you having a cat \u2014 the only pet on file is your dog, Biscuit (memory d18f589f).",
+      "input_tokens": 4589,
+      "output_tokens": 519,
+      "latency_s": 15.2
+    },
+    {
+      "probe": "preference_following",
+      "ability": "preference",
+      "passed": true,
+      "reason": "ok",
+      "answer_head": "Here are some best-practice tips for naming variables in Python: 1. **Use `snake_case`** \u2014 PEP 8 convention: lowercase words separated by underscores (`user_nam",
+      "input_tokens": 4919,
+      "output_tokens": 2478,
+      "latency_s": 61.2
+    }
+  ]
+}

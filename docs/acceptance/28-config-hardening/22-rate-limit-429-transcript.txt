@@ -1,0 +1,28 @@
+# §14e-43 — rate_limit_burst moves the 429 boundary (spec §18.8 token bucket)
+# AUTH_ENABLED=1 (env, sandbox override); settings pair set live via the API.
+
+$ PATCH /api/v1/settings {rate_limit_burst: 5, rate_limit_per_s: 1}  (as admin)
+-> 200
+
+$ # burst=5, refill=1/s — eight rapid GETs as one user:
+GET /api/v1/skills [1] -> 200
+GET /api/v1/skills [2] -> 200
+GET /api/v1/skills [3] -> 200
+GET /api/v1/skills [4] -> 200
+GET /api/v1/skills [5] -> 429
+GET /api/v1/skills [6] -> 429
+GET /api/v1/skills [7] -> 429
+GET /api/v1/skills [8] -> 429
+
+$ # raise the burst: PATCH {rate_limit_burst: 120, rate_limit_per_s: 10} (retried while throttled)
+-> 200
+
+$ # burst=120 — the same eight rapid GETs, boundary moved:
+GET /api/v1/skills [1] -> 200
+GET /api/v1/skills [2] -> 200
+GET /api/v1/skills [3] -> 200
+GET /api/v1/skills [4] -> 200
+GET /api/v1/skills [5] -> 200
+GET /api/v1/skills [6] -> 200
+GET /api/v1/skills [7] -> 200
+GET /api/v1/skills [8] -> 200

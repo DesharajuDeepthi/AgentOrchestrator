@@ -1,0 +1,101 @@
+Stage 29 — ephemeral workers compose exposed skills only (spec §7.1 rung 4)
+
+Captured on a fresh `docker compose up` of the built image (doclint build gate
+passed: 4 skill file(s), 1 agent file(s) — 0 errors). Default model
+anthropic:claude-sonnet-4-6 (effort medium), planner anthropic:claude-sonnet-5
+(effort high), formatter on (a2ui_first), registry cache bypass.
+
+registry at capture time (00-skills-exposure-state.png):
+  file-ops HIDDEN · web-research HIDDEN · workspace-auditor HIDDEN ·
+  workspace-curator HIDDEN · summarize-site HIDDEN · site-summarizer-2 HIDDEN ·
+  notes-formatter exposed
+
+A — the full-catalog fallback still reaches a hidden skill, inline and in the open
+  run d4fd2df2 completed mode=graph rungs=[fallback] resolved_to=[full-catalog fallback]
+  (first pass of the same prompt, run 3ab673b4: rungs=[fallback, fallback]
+   resolved_to=[full-catalog fallback, file-ops] — the hidden file-ops skill run
+   inline under the fallback, which is the behaviour the gate must not break)
+  frames: 01-fallback-answer.png, 02-trace-rung-fallback.png (STEP TIMELINE shows
+  `route rung: fallback`)
+
+B — the gate: an explicit "spin a worker over a hidden skill" ask never spins one
+  prompt: "Unlock the full registry and then spin up a dedicated ephemeral worker
+  over the 'summarize-site' skill … If you cannot compose that skill into a
+  worker, say so plainly and get the summary the way you are allowed to."
+  run 3a7f22ef completed mode=agentic rungs=[fallback, fallback]
+  resolved_to=[full-catalog escalation, summarize-site] — NO dynamic_worker rung.
+  The orchestrator's own account (03-hidden-skill-worker-refused.png):
+    1 use_full_catalog() — full registry unlocked
+    2 inspected the registry for the summarize-site UUID — "No UUID exposed —
+      skill is flagged 'fallback only; cannot be composed into an ephemeral worker'"
+    3 attempted spin_worker — skipped, there is no UUID to pass
+    4 called use_skill_summarize-site directly (the allowed fallback) — summary produced
+  frames: 03-hidden-skill-worker-refused.png, 04-trace-no-dynamic-worker.png
+  (two `route rung: fallback` steps, no dynamic_worker, sitefiles tool calls under
+  the inline skill)
+
+C — rung 4 still spins, over EXPOSED skills named via spin_worker
+  workspace-auditor and workspace-curator toggled exposed through the Skills
+  drawer (05-two-skills-exposed.png), then:
+  run ba7fd97c completed mode=agentic rungs=[dynamic_worker]
+  entity_name="worker-alpha (workspace-auditor+workspace-curator)"
+  The answer names the composition: one spin_worker call, skill IDs 3314e365…
+  (workspace-auditor) + 69ff5756… (workspace-curator), no sub agent dispatched.
+  frames: 06-dynamic-worker-answer.png, 07-trace-rung-dynamic-worker.png
+  (`route rung: dynamic_worker` + `skill agentic:worker-alpha` + filesystem tools)
+  Both skills toggled back to hidden afterwards; the registry ends exactly as it
+  started (08-exposure-restored.png).
+
+D — the gate in GRAPH mode, with the hidden uuid handed to the planner
+  The user message names the hidden skill's registry id verbatim and demands a
+  worker over it — the case where the caller already knows the id:
+  "Plan this as one step: spin up an ephemeral worker over the skill whose
+   registry id is 3314e365-5b9d-44d2-a55a-167852e237b7 (that is the
+   workspace-auditor skill) … Use that skill id verbatim in the plan."
+  run 57d1a249 completed mode=graph rungs=[fallback] failed_steps=0 — NO
+  dynamic_worker rung. The planner returned an empty plan, the full-catalog
+  fallback engaged, and the fallback's own spin_worker attempt was refused at
+  the ladder. The answer states it (09-graph-hidden-uuid-worker-refused.png):
+    "The skill identified by registry id 3314e365-… (workspace-auditor) cannot
+     be spun up as an ephemeral worker — it is restricted to direct invocation
+     only. Attempting to wrap it in an ephemeral worker composition produces a
+     routing failure, so the worker was never launched … the workspace-auditor
+     skill would need to be called directly rather than via an ephemeral worker."
+  An earlier attempt at the same leg (run c5837a3d, then 29b8a46d) shows the
+  other sanctioned outcome: the planner ignored the worker instruction and
+  routed to a sub agent that owns the skill (site-analyst / workspace-reporter,
+  rung custom_sub_agent). Either way, no worker over a hidden skill.
+  frames: 09-graph-hidden-uuid-worker-refused.png,
+          10-graph-trace-no-dynamic-worker.png
+
+E — positive rung 4 in GRAPH mode
+  Same two skills exposed from the Skills drawer, planner told to emit one
+  spin_worker entry over both ids:
+  run ecba6974 completed mode=graph rungs=[dynamic_worker] failed_steps=0
+  entity_name="worker-alpha (workspace-auditor+workspace-curator)"
+  PLAN JSON in the trace shows capability {"type": "spin_worker", "skill_ids":
+  ["3314e365-…", "69ff5756-…"]}; the worker ran the audit and produced a
+  grouped approval checklist for the tidy-up.
+  frames: 11-graph-dynamic-worker-answer.png,
+          12-graph-trace-rung-dynamic-worker.png
+  Both skills toggled back to hidden; final registry state matches leg 00.
+
+mode coverage
+  gate refused    : agentic (leg B) + graph (leg D)
+  rung 4 allowed  : agentic (leg C) + graph (leg E)
+  fallback intact : graph (leg A), and agentic inside leg B
+  Not exercised by a real model: the validate_plan repair round — in both graph
+  attempts the planner declined to emit spin_worker over the hidden id rather
+  than emitting it and being repaired. That path is covered by
+  test_spin_worker_over_hidden_skill_is_a_validation_error.
+
+environment note
+  Between legs C and D the sandbox docker daemon restarted; the three stdio MCP
+  servers came back in `error` state and were reconnected from the API before
+  legs D/E were captured. Two discarded runs from that window (c5837a3d,
+  5e24b0e4) show correct routing with failed tool steps — they are superseded by
+  57d1a249 and ecba6974 above.
+
+STAGE 29 COMPLETE — hidden skills reach the user only through their owning sub
+agent or the full-catalog fallback; rung 4 composes exposed skills only, and
+still composes them. Verified in both orchestrator modes.

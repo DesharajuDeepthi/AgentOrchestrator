@@ -1,0 +1,133 @@
+{
+  "world_a": {
+    "baseline_floor_sweep": [
+      {
+        "world": "A",
+        "mode": "static",
+        "floor": 0.5,
+        "junk_admitted": 60,
+        "valuable_blocked": 0,
+        "valuable_quarantined": 0,
+        "kept_precision": 0.583,
+        "tombstones": 75,
+        "rejected_in_review": 0
+      },
+      {
+        "world": "A",
+        "mode": "static",
+        "floor": 0.6,
+        "junk_admitted": 42,
+        "valuable_blocked": 0,
+        "valuable_quarantined": 0,
+        "kept_precision": 0.642,
+        "tombstones": 58,
+        "rejected_in_review": 0
+      },
+      {
+        "world": "A",
+        "mode": "static",
+        "floor": 0.7,
+        "junk_admitted": 15,
+        "valuable_blocked": 24,
+        "valuable_quarantined": 0,
+        "kept_precision": 0.748,
+        "tombstones": 28,
+        "rejected_in_review": 0
+      },
+      {
+        "world": "A",
+        "mode": "static",
+        "floor": 0.75,
+        "junk_admitted": 5,
+        "valuable_blocked": 42,
+        "valuable_quarantined": 0,
+        "kept_precision": 0.807,
+        "tombstones": 16,
+        "rejected_in_review": 0
+      }
+    ],
+    "learner": {
+      "world": "A",
+      "mode": "learner_auto",
+      "start_floor": 0.5,
+      "junk_admitted": 10,
+      "valuable_blocked": 0,
+      "valuable_quarantined": 0,
+      "kept_precision": 0.583,
+      "tombstones": 30,
+      "rejected_in_review": 45,
+      "floor_track": [
+        0.5,
+        0.5,
+        0.5,
+        0.5,
+        0.5,
+        0.5,
+        0.5
+      ],
+      "clamp_violations": 0,
+      "quarantined_kinds": [
+        "entity"
+      ]
+    }
+  },
+  "world_b": {
+    "baseline_floor_sweep": [
+      {
+        "world": "B",
+        "mode": "static",
+        "floor": 0.5,
+        "junk_admitted": 66,
+        "valuable_blocked": 0,
+        "valuable_quarantined": 0,
+        "kept_precision": 0.6,
+        "tombstones": 72,
+        "rejected_in_review": 0
+      },
+      {
+        "world": "B",
+        "mode": "static",
+        "floor": 0.6,
+        "junk_admitted": 12,
+        "valuable_blocked": 0,
+        "valuable_quarantined": 0,
+        "kept_precision": 0.865,
+        "tombstones": 17,
+        "rejected_in_review": 0
+      },
+      {
+        "world": "B",
+        "mode": "static",
+        "floor": 0.65,
+        "junk_admitted": 0,
+        "valuable_blocked": 18,
+        "valuable_quarantined": 0,
+        "kept_precision": 0.938,
+        "tombstones": 6,
+        "rejected_in_review": 0
+      }
+    ],
+    "learner": {
+      "world": "B",
+      "mode": "learner_auto",
+      "start_floor": 0.5,
+      "junk_admitted": 36,
+      "valuable_blocked": 0,
+      "valuable_quarantined": 0,
+      "kept_precision": 0.727,
+      "tombstones": 41,
+      "rejected_in_review": 0,
+      "floor_track": [
+        0.5,
+        0.5,
+        0.55,
+        0.6,
+        0.6,
+        0.6,
+        0.6
+      ],
+      "clamp_violations": 0,
+      "quarantined_kinds": []
+    }
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "days_simulated": 90,
+  "expired": 10,
+  "quarantined": 1,
+  "digests_folded": 77,
+  "digests_before": 88,
+  "period_digests": 7,
+  "raw_digests_left": 11,
+  "cohorts": {
+    "stale_low": {
+      "expired": 10
+    },
+    "rehearsed_low": {
+      "active": 10
+    },
+    "stale_high": {
+      "active": 10
+    },
+    "pinned_old": {
+      "active": 3
+    }
+  },
+  "checks": {
+    "E1_stale_low_expired": true,
+    "E2_rehearsed_low_survive": true,
+    "E3_pinned_immune": true,
+    "E4_stale_high_survive": true,
+    "E5_episodic_bounded": true,
+    "E6_contradiction_quarantined": true
+  },
+  "all_pass": true
+}

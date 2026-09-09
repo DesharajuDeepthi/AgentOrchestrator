@@ -1,0 +1,22 @@
+exposed auth-matrix research tools
+✓ 35-live-apikey-header-chat
+35-live-apikey-header: run completed 
+  step tool_call: fenced=true stub-echo=true err=
+✓ 35-live-bearer-chat
+35-live-bearer: run completed 
+  step tool_call: fenced=true stub-echo=true err=
+✓ 35-live-oauth2-chat
+35-live-oauth2: run completed 
+  step tool_call: fenced=true stub-echo=true err=
+✓ 35-live-mtls-unsupported-chat
+35-live-mtls-unsupported: run completed 
+  step tool_call: fenced=false stub-echo=false err=HTTP Error 401: Client error '401 Unauthorized' for url 'http://172.18.0.1:8031/'
+For more information check: https://de
+skill created: 4bc61cde-6878-48c9-905a-04432749ed73 excomm-research
+sub agent created: 51d0a862-ee2e-481b-9219-90002f9b59da excomm-delegate active
+✓ 36-excomm-routed-chat
+36-excomm-routed: run completed 
+  step tool_call: fenced=true stub-echo=true err=
+36 routed steps: plan: | route: | skill: | tool_call: | skill: | route: | aggregate:
+✓ 36-excomm-trace
+pageerrors: none

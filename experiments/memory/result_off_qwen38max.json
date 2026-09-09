@@ -1,0 +1,92 @@
+{
+  "summary": {
+    "config": "off",
+    "passed": 2,
+    "total": 7,
+    "by_ability": {
+      "information_extraction": "0/2",
+      "multi_session": "0/1",
+      "knowledge_update": "0/1",
+      "temporal": "0/1",
+      "abstention": "1/1",
+      "preference": "1/1"
+    },
+    "question_input_tokens": 28986,
+    "question_output_tokens": 5832,
+    "setup_input_tokens": 24770,
+    "mean_question_latency_s": 21.4,
+    "memories_active": 0
+  },
+  "detail": [
+    {
+      "probe": "single_fact_recall",
+      "ability": "information_extraction",
+      "passed": false,
+      "reason": "missing any of ['biscuit']",
+      "answer_head": "I don't have any information about your dog's name in our conversation \u2014 this appears to be a fresh session. Could you tell me, and I'll be happy to remember it",
+      "input_tokens": 3981,
+      "output_tokens": 355,
+      "latency_s": 12.2
+    },
+    {
+      "probe": "second_fact_recall",
+      "ability": "information_extraction",
+      "passed": false,
+      "reason": "missing any of ['neovim']",
+      "answer_head": "I don't have any information about your preferred code editor in our conversation.",
+      "input_tokens": 4009,
+      "output_tokens": 312,
+      "latency_s": 9.2
+    },
+    {
+      "probe": "multi_session_reasoning",
+      "ability": "multi_session",
+      "passed": false,
+      "reason": "missing any of ['1.5', '1,500,000']",
+      "answer_head": "I don't have access to your internal revenue data or targets. None of my available capabilities can look up internal financial metrics like Q3 revenue targets a",
+      "input_tokens": 4031,
+      "output_tokens": 1184,
+      "latency_s": 29.4
+    },
+    {
+      "probe": "knowledge_update",
+      "ability": "knowledge_update",
+      "passed": false,
+      "reason": "missing any of ['release-2026']",
+      "answer_head": "I don't have access to your internal deployment configuration. None of my available capabilities can look up which branch you deploy from without a specific fil",
+      "input_tokens": 4099,
+      "output_tokens": 898,
+      "latency_s": 24.3
+    },
+    {
+      "probe": "temporal_before_after",
+      "ability": "temporal",
+      "passed": false,
+      "reason": "missing any of ['main']",
+      "answer_head": "I don't have access to your internal deployment history or configuration changes. None of my available capabilities can look up what your deploy branch was befo",
+      "input_tokens": 4195,
+      "output_tokens": 897,
+      "latency_s": 23.3
+    },
+    {
+      "probe": "abstention",
+      "ability": "abstention",
+      "passed": true,
+      "reason": "ok",
+      "answer_head": "I don't have any information about your cat's name in our conversation.",
+      "input_tokens": 4150,
+      "output_tokens": 273,
+      "latency_s": 8.1
+    },
+    {
+      "probe": "preference_following",
+      "ability": "preference",
+      "passed": true,
+      "reason": "ok",
+      "answer_head": "Here are some tips for naming variables in Python: 1. **Use descriptive names** \u2013 `total_price` is better than `tp` or `x`. 2. **Follow snake_case** \u2013 PEP 8 con",
+      "input_tokens": 4521,
+      "output_tokens": 1913,
+      "latency_s": 43.6
+    }
+  ]
+}

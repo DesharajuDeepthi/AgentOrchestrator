@@ -1,0 +1,92 @@
+{
+  "summary": {
+    "config": "semantic",
+    "passed": 5,
+    "total": 7,
+    "by_ability": {
+      "information_extraction": "1/2",
+      "multi_session": "1/1",
+      "knowledge_update": "0/1",
+      "temporal": "1/1",
+      "abstention": "1/1",
+      "preference": "1/1"
+    },
+    "question_input_tokens": 44084,
+    "question_output_tokens": 8857,
+    "setup_input_tokens": 39894,
+    "mean_question_latency_s": 24.7,
+    "memories_active": 6
+  },
+  "detail": [
+    {
+      "probe": "single_fact_recall",
+      "ability": "information_extraction",
+      "passed": false,
+      "reason": "missing any of ['biscuit']",
+      "answer_head": "I don't know your dog's name because you haven't shared it with me yet.",
+      "input_tokens": 17749,
+      "output_tokens": 994,
+      "latency_s": 22.3
+    },
+    {
+      "probe": "second_fact_recall",
+      "ability": "information_extraction",
+      "passed": true,
+      "reason": "ok",
+      "answer_head": "Based on your past conversation (memory id bcd6a9c6), your favorite editor is Neovim.",
+      "input_tokens": 4107,
+      "output_tokens": 564,
+      "latency_s": 12.1
+    },
+    {
+      "probe": "multi_session_reasoning",
+      "ability": "multi_session",
+      "passed": true,
+      "reason": "ok",
+      "answer_head": "Based on the stored records: the Q3 revenue target was **$2 million**, and the actual came in at **$1.5 million**. So, **no** \u2014 we did not hit the target.",
+      "input_tokens": 4331,
+      "output_tokens": 2571,
+      "latency_s": 46.5
+    },
+    {
+      "probe": "knowledge_update",
+      "ability": "knowledge_update",
+      "passed": false,
+      "reason": "missing any of ['release-2026']",
+      "answer_head": "main",
+      "input_tokens": 4324,
+      "output_tokens": 1440,
+      "latency_s": 27.4
+    },
+    {
+      "probe": "temporal_before_after",
+      "ability": "temporal",
+      "passed": true,
+      "reason": "ok",
+      "answer_head": "main",
+      "input_tokens": 4367,
+      "output_tokens": 1112,
+      "latency_s": 21.3
+    },
+    {
+      "probe": "abstention",
+      "ability": "abstention",
+      "passed": true,
+      "reason": "ok",
+      "answer_head": "I don't know your cat's name because you haven't shared it with me yet.",
+      "input_tokens": 4484,
+      "output_tokens": 518,
+      "latency_s": 12.1
+    },
+    {
+      "probe": "preference_following",
+      "ability": "preference",
+      "passed": true,
+      "reason": "ok",
+      "answer_head": "Here are some essential tips for naming variables in Python: 1. **Use descriptive names**: Choose names that clearly indicate what the variable represents (e.g.",
+      "input_tokens": 4722,
+      "output_tokens": 1658,
+      "latency_s": 31.4
+    }
+  ]
+}

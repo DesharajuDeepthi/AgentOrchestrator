@@ -1,0 +1,11 @@
+Stage 25 — direct sub-agent invocation (spec §7.5)
+
+registry: research-concierge exposed=true (static), site-analyst exposed=false (dynamic)
+gating: unexposed invoke → 403 (sub agent 'site-analyst' is not exposed for direct invocation); unknown id → 404
+chat-pinned run dfcdec17: status=completed mode=direct target=true rungs=custom_sub_agent hitl_steps=1 answer_ui=present(0 blocks)
+invoke-API run 080e53c7: status=completed mode=direct conversation=37b34fc4 (fresh, chat-visible)
+formatter-off run 4de9af99: status=completed answer_ui=null (raw renders directly — parity holds)
+PART 25 COMPLETE — direct invocation verified end to end
+manual-picker run 2433ec2f: status=completed mode=direct target_set=true
+unpinned run c424a2fe: status=completed mode=graph target_set=false
+PART 25b COMPLETE — all four §7.5 surfaces exercised live

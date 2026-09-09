@@ -1,0 +1,6 @@
+{
+  "config": "cascade",
+  "dedupe_rows_from_50": 1,
+  "max_chain_depth": 3,
+  "storm_accepted_of_60": 50
+}

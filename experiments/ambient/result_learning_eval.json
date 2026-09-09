@@ -1,0 +1,57 @@
+{
+  "static": {
+    "mode": "off",
+    "interventions": 5,
+    "intervention_precision": 0.2,
+    "total_reward": -2.82,
+    "tier0_escalations": 0,
+    "final_tiers": {
+      "ops-alerts": 3,
+      "digest-reports": 2
+    },
+    "policy_rows": [
+      {
+        "category": "ops-alerts",
+        "override": 2,
+        "source": "rule"
+      },
+      {
+        "category": "ops-alerts",
+        "override": 3,
+        "source": "rule"
+      }
+    ]
+  },
+  "learning": {
+    "mode": "auto",
+    "interventions": 30,
+    "intervention_precision": 0.7,
+    "total_reward": -2.53,
+    "tier0_escalations": 0,
+    "final_tiers": {
+      "ops-alerts": 3,
+      "digest-reports": 1
+    },
+    "policy_rows": [
+      {
+        "category": "digest-reports",
+        "override": 1,
+        "source": "learner"
+      },
+      {
+        "category": "ops-alerts",
+        "override": 2,
+        "source": "learner"
+      },
+      {
+        "category": "ops-alerts",
+        "override": 3,
+        "source": "learner"
+      }
+    ]
+  },
+  "gate": {
+    "learning_ge_static_precision": true,
+    "zero_learner_tier0_escalations": true
+  }
+}

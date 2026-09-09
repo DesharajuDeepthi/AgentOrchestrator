@@ -1,0 +1,92 @@
+{
+  "summary": {
+    "config": "semantic",
+    "passed": 5,
+    "total": 7,
+    "by_ability": {
+      "information_extraction": "1/2",
+      "multi_session": "1/1",
+      "knowledge_update": "0/1",
+      "temporal": "1/1",
+      "abstention": "1/1",
+      "preference": "1/1"
+    },
+    "question_input_tokens": 27552,
+    "question_output_tokens": 8449,
+    "setup_input_tokens": 23322,
+    "mean_question_latency_s": 60.1,
+    "memories_active": 7
+  },
+  "detail": [
+    {
+      "probe": "single_fact_recall",
+      "ability": "information_extraction",
+      "passed": false,
+      "reason": "missing any of ['biscuit']",
+      "answer_head": "I don't have that information \u2014 you haven't told me your dog's name in this conversation.",
+      "input_tokens": 3494,
+      "output_tokens": 161,
+      "latency_s": 30.4
+    },
+    {
+      "probe": "second_fact_recall",
+      "ability": "information_extraction",
+      "passed": true,
+      "reason": "ok",
+      "answer_head": "According to my memory, you prefer Neovim (memory episode 65e64fdb).",
+      "input_tokens": 3652,
+      "output_tokens": 310,
+      "latency_s": 18.3
+    },
+    {
+      "probe": "multi_session_reasoning",
+      "ability": "multi_session",
+      "passed": true,
+      "reason": "ok",
+      "answer_head": "No. The Q3 revenue target was $2 million (memory fact 9576fad4), and Q3 revenue came in at $1.5 million \u2014 $500,000 short of the target. (Note: the actual figure",
+      "input_tokens": 3928,
+      "output_tokens": 3637,
+      "latency_s": 140.5
+    },
+    {
+      "probe": "knowledge_update",
+      "ability": "knowledge_update",
+      "passed": false,
+      "reason": "missing any of ['release-2026']",
+      "answer_head": "main (memory fact c5f0c328)",
+      "input_tokens": 3961,
+      "output_tokens": 416,
+      "latency_s": 45.5
+    },
+    {
+      "probe": "temporal_before_after",
+      "ability": "temporal",
+      "passed": true,
+      "reason": "ok",
+      "answer_head": "main (per episode 17ce0a98; the user later corrected it to release-2026, per fact a9a41b53)",
+      "input_tokens": 4027,
+      "output_tokens": 1194,
+      "latency_s": 53.6
+    },
+    {
+      "probe": "abstention",
+      "ability": "abstention",
+      "passed": true,
+      "reason": "ok",
+      "answer_head": "I don't have that information \u2014 my memory only covers your dog (Biscuit, memory 5e060282-adjacent episode 65e64fdb), not any cat.",
+      "input_tokens": 4153,
+      "output_tokens": 275,
+      "latency_s": 38.5
+    },
+    {
+      "probe": "preference_following",
+      "ability": "preference",
+      "passed": true,
+      "reason": "ok",
+      "answer_head": "Here are some tips for naming variables in Python: - **Use snake_case** for variables and functions (e.g., `user_count`, not `userCount`). PEP 8 recommends lowe",
+      "input_tokens": 4337,
+      "output_tokens": 2456,
+      "latency_s": 94.1
+    }
+  ]
+}

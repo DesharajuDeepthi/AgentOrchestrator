@@ -1,0 +1,14 @@
+✓ 35-stub-hdr-form
+✓ 35-stub-hdr-detail-auth
+✓ 35-stub-bearer-form
+✓ 35-stub-bearer-detail-auth
+✓ 35-stub-oauth2-form
+✓ 35-stub-oauth2-detail-auth
+✓ 35-stub-mtls-form
+✓ 35-stub-mtls-detail-auth
+stub-open: auth_status=open auth={} credentials-key-present=false
+stub-hdr: auth_status=ok auth={"main":{"type":"apiKey","supported":true,"configured":true}} credentials-key-present=false
+stub-bearer: auth_status=ok auth={"main":{"type":"http","supported":true,"configured":true}} credentials-key-present=false
+stub-oauth2: auth_status=ok auth={"main":{"type":"oauth2","supported":true,"configured":true}} credentials-key-present=false
+stub-mtls: auth_status=unsupported auth={"main":{"type":"mutualTLS","supported":false,"configured":false}} credentials-key-present=false
+pageerrors: none

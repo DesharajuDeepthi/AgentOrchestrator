@@ -1,0 +1,16 @@
+{
+  "fallback_rate_procedural_off": "0/3",
+  "fallback_rate_procedural_on": "0/3",
+  "detail": {
+    "off": [
+      [],
+      [],
+      []
+    ],
+    "on": [
+      [],
+      [],
+      []
+    ]
+  }
+}

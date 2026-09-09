@@ -1,0 +1,92 @@
+{
+  "summary": {
+    "config": "off",
+    "passed": 2,
+    "total": 7,
+    "by_ability": {
+      "information_extraction": "0/2",
+      "multi_session": "0/1",
+      "knowledge_update": "0/1",
+      "temporal": "0/1",
+      "abstention": "1/1",
+      "preference": "1/1"
+    },
+    "question_input_tokens": 84811,
+    "question_output_tokens": 4181,
+    "setup_input_tokens": 22610,
+    "mean_question_latency_s": 30.5,
+    "memories_active": 0
+  },
+  "detail": [
+    {
+      "probe": "single_fact_recall",
+      "ability": "information_extraction",
+      "passed": false,
+      "reason": "missing any of ['biscuit']",
+      "answer_head": "I don't know \u2014 you haven't mentioned your dog's name in our conversation.",
+      "input_tokens": 3641,
+      "output_tokens": 169,
+      "latency_s": 13.2
+    },
+    {
+      "probe": "second_fact_recall",
+      "ability": "information_extraction",
+      "passed": false,
+      "reason": "missing any of ['neovim']",
+      "answer_head": "I don't know \u2014 you haven't told me which code editor you prefer.",
+      "input_tokens": 3669,
+      "output_tokens": 184,
+      "latency_s": 13.2
+    },
+    {
+      "probe": "multi_session_reasoning",
+      "ability": "multi_session",
+      "passed": false,
+      "reason": "missing any of ['1.5', '1,500,000']",
+      "answer_head": "I don't have access to our internal Q3 revenue figures or the target \u2014 none of my available capabilities (web fetching, workspace tools, etc.) can retrieve this",
+      "input_tokens": 3713,
+      "output_tokens": 741,
+      "latency_s": 24.3
+    },
+    {
+      "probe": "knowledge_update",
+      "ability": "knowledge_update",
+      "passed": false,
+      "reason": "missing any of ['release-2026']",
+      "answer_head": "I don't have any capability that can retrieve our internal deployment configuration or repo settings, so I can't tell you which branch we deploy from. Please sh",
+      "input_tokens": 3757,
+      "output_tokens": 514,
+      "latency_s": 23.3
+    },
+    {
+      "probe": "temporal_before_after",
+      "ability": "temporal",
+      "passed": false,
+      "reason": "missing any of ['main']",
+      "answer_head": "I couldn't find the old deploy branch name. I checked long-term memory (empty/disabled) and all workspace files \u2014 no record of a deploy branch, old or new. Rath",
+      "input_tokens": 62151,
+      "output_tokens": 1037,
+      "latency_s": 84.1
+    },
+    {
+      "probe": "abstention",
+      "ability": "abstention",
+      "passed": true,
+      "reason": "ok",
+      "answer_head": "I don't know \u2014 you haven't mentioned your cat's name in our conversation.",
+      "input_tokens": 3789,
+      "output_tokens": 161,
+      "latency_s": 19.2
+    },
+    {
+      "probe": "preference_following",
+      "ability": "preference",
+      "passed": true,
+      "reason": "ok",
+      "answer_head": "Tips for naming variables in Python: - Use snake_case for variable and function names (e.g., `user_count`, `max_retries`); use PascalCase only for classes. - Be",
+      "input_tokens": 4091,
+      "output_tokens": 1375,
+      "latency_s": 36.4
+    }
+  ]
+}

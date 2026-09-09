@@ -1,0 +1,239 @@
+
+=== P1 graph — composite: 2 sub agents + direct skill + direct tool ===
+  shot p1-multistep-graph/00-live-early
+  shot p1-multistep-graph/01-live-mid
+  shot p1-multistep-graph/hitl-gate
+  gate → approved
+  gate → approved
+  run af0f9f26 completed mode=graph gates=2 failed_steps=0 routes=[["custom_sub_agent","workspace-reporter"],["custom_sub_agent","research-concierge"],["direct_skill","notes-formatter"],["direct_tool","fetch.fetch"]]
+  shot p1-multistep-graph/02-answer
+  shot p1-multistep-graph/03-answer-scrolled
+  shot p1-multistep-graph/04-trace
+  P1 graph rungs=[custom_sub_agent,custom_sub_agent,direct_skill,direct_tool]
+
+=== P1 agentic — composite: 2 sub agents + direct skill + direct tool ===
+  shot p1-multistep-agentic/00-live-early
+  shot p1-multistep-agentic/01-live-mid
+  run 2b6187c9 running mode=agentic gates=0 failed_steps=0 routes=[["direct_skill","notes-formatter"],["custom_sub_agent","research-concierge"],["custom_sub_agent","workspace-reporter"]]
+  shot p1-multistep-agentic/02-answer
+  shot p1-multistep-agentic/03-answer-scrolled
+  shot p1-multistep-agentic/04-trace
+  P1 agentic rungs=[direct_skill,custom_sub_agent,custom_sub_agent]
+
+=== P1 agentic — composite: 2 sub agents + direct skill + direct tool ===
+  shot p1-multistep-agentic/00-live-early
+  shot p1-multistep-agentic/01-live-mid
+  shot p1-multistep-agentic/hitl-gate
+  gate → approved
+  gate → approved
+  run 56f271e0 completed mode=agentic gates=2 failed_steps=0 routes=[["direct_skill","notes-formatter"],["custom_sub_agent","research-concierge"],["custom_sub_agent","workspace-reporter"]]
+  shot p1-multistep-agentic/02-answer
+  shot p1-multistep-agentic/03-answer-scrolled
+  shot p1-multistep-agentic/04-trace
+  P1 agentic rungs=[direct_skill,custom_sub_agent,custom_sub_agent]
+
+=== P2 — direct invocation, three sub agents ===
+  target pinned → workspace-warden
+  shot p2-direct-invocation/00-warden-pinned
+  run 9307a443 completed mode=direct gates=0 failed_steps=1 routes=[["native_sub_agent","workspace-warden"]]
+  shot p2-direct-invocation/01-warden-answer
+  shot p2-direct-invocation/02-warden-trace
+  workspace-warden: mode=direct target=pinned
+  target pinned → research-concierge
+  shot p2-direct-invocation/03-research-pinned
+  shot p2-direct-invocation/hitl-gate
+  gate → approved
+  run 4fc1d865 completed mode=direct gates=1 failed_steps=0 routes=[["custom_sub_agent","research-concierge"]]
+  shot p2-direct-invocation/04-research-answer
+  shot p2-direct-invocation/05-research-trace
+  research-concierge: mode=direct target=pinned
+  target pinned → workspace-reporter
+  shot p2-direct-invocation/06-reporter-pinned
+  run 9d7f6bd0 paused_hitl mode=direct gates=0 failed_steps=0 routes=[["custom_sub_agent","workspace-reporter"]]
+  shot p2-direct-invocation/07-reporter-answer
+  shot p2-direct-invocation/08-reporter-trace
+  workspace-reporter: mode=direct target=pinned
+  hidden site-analyst direct invoke → HTTP 403 (expected 403)
+  shot p2-direct-invocation/09-target-list-excludes-hidden
+
+-- P2b: resume the reporter form gate
+  shot p2-direct-invocation/06b-reporter-form-gate
+
+-- P2b: resume the reporter form gate
+  shot p2-direct-invocation/06b-reporter-form-gate
+  shot p2-direct-invocation/hitl-gate
+  gate → approved
+  run 9d7f6bd0 completed mode=direct gates=1 failed_steps=0 routes=[["custom_sub_agent","workspace-reporter"]]
+  run 9d7f6bd0 completed mode=direct gates=0 failed_steps=0 routes=[["custom_sub_agent","workspace-reporter"]]
+  shot p2-direct-invocation/07-reporter-answer
+  shot p2-direct-invocation/08-reporter-trace
+  reporter: completed mode=direct gates=1 routes=[["custom_sub_agent","workspace-reporter"]]
+
+=== P3 — full-catalog fallback ===
+  shot p3-fallback/00-sha256-banner-live
+  run 0b0edcac completed mode=graph gates=0 failed_steps=0 routes=[["fallback","full-catalog fallback"],["fallback","file-ops"]]
+  shot p3-fallback/01-sha256-answer
+  shot p3-fallback/02-sha256-trace
+  sha256: banner=true rungs=[fallback,fallback] plan={"entries":[],"direct_answer":null,"no_confident_match":true}
+  shot p3-fallback/03-bytecount-banner-live
+  run 6cfb585b completed mode=graph gates=0 failed_steps=0 routes=[["fallback","full-catalog fallback"],["fallback","workspace-auditor"]]
+  shot p3-fallback/04-bytecount-answer
+  shot p3-fallback/05-bytecount-trace
+  bytecount: banner=true rungs=[fallback,fallback] plan={"entries":[],"direct_answer":null,"no_confident_match":false}
+  shot p3-fallback/06-scripts-diverge-banner-live
+  run 77f2ff54 completed mode=graph gates=0 failed_steps=0 routes=[["fallback","full-catalog fallback"],["fallback","workspace-auditor"]]
+  shot p3-fallback/07-scripts-diverge-answer
+  shot p3-fallback/08-scripts-diverge-trace
+  scripts-diverge: banner=true rungs=[fallback,fallback] plan={"entries":[],"direct_answer":null,"no_confident_match":false}
+
+=== P4 — parallel ephemeral workers ===
+  skill workspace-auditor exposed=true
+
+=== P4 — parallel ephemeral workers ===
+  skill workspace-auditor exposed=true
+  skill summarize-site exposed=true
+  shot p4-parallel-workers/00-skills-exposed-for-composition
+  shot p4-parallel-workers/01-live-two-workers-early
+  shot p4-parallel-workers/02-live-two-workers
+  shot p4-parallel-workers/03-live-two-workers-late
+  run 8b1d7d30 completed mode=graph gates=0 failed_steps=0 routes=[["direct_skill","workspace-auditor"],["direct_skill","summarize-site"],["direct_skill","notes-formatter"],["direct_skill","notes-formatter"]]
+  shot p4-parallel-workers/04-two-workers-answer
+  shot p4-parallel-workers/05-two-workers-trace
+  TWO: dynamic_worker count=0 → []
+  skill web-research exposed=true
+  shot p4-parallel-workers/06-live-three-workers
+  shot p4-parallel-workers/07-live-three-workers-late
+  run 14fadb7c completed mode=graph gates=0 failed_steps=0 routes=[["fallback","full-catalog fallback"],["fallback","workspace-auditor"],["fallback","web-research"]]
+  shot p4-parallel-workers/08-three-workers-answer
+  shot p4-parallel-workers/09-three-workers-trace
+  THREE: dynamic_worker count=0 → []
+  skill workspace-auditor exposed=false
+  skill summarize-site exposed=false
+  skill web-research exposed=false
+  shot p4-parallel-workers/10-exposure-restored
+
+-- P4b: composition-shaped work with the covering sub agents stood down
+  sub agent workspace-warden → inactive
+  sub agent site-analyst → inactive
+  sub agent site-analyst → inactive
+  sub agent workspace-reporter → inactive
+  skill workspace-auditor exposed=true
+  skill workspace-curator exposed=true
+  skill summarize-site exposed=true
+  shot p4-parallel-workers/11-skills-exposed-agents-stood-down
+  shot p4-parallel-workers/12-live-parallel-workers
+  shot p4-parallel-workers/13-live-parallel-workers-mid
+  shot p4-parallel-workers/14-live-parallel-workers-late
+  run 728ad904 completed mode=graph gates=0 failed_steps=1 routes=[["fallback","full-catalog fallback"],["fallback","workspace-curator"],["fallback","site-summarizer-2"],["fallback","workspace-curator"]]
+  attempt 1: dynamic_worker=0 → []
+  plan: {"entries":[],"direct_answer":null,"no_confident_match":false}
+  shot p4-parallel-workers/12-live-parallel-workers
+  shot p4-parallel-workers/13-live-parallel-workers-mid
+  run 3e589474 completed mode=graph gates=0 failed_steps=0 routes=[["fallback","full-catalog fallback"],["fallback","workspace-curator"],["fallback","summarize-site"]]
+  attempt 2: dynamic_worker=0 → []
+  plan: {"entries":[],"direct_answer":null,"no_confident_match":false}
+  sub agent workspace-warden → active
+  sub agent site-analyst → active
+  sub agent site-analyst → active
+  sub agent workspace-reporter → active
+  skill workspace-auditor exposed=false
+  skill workspace-curator exposed=false
+  skill summarize-site exposed=false
+  shot p4-parallel-workers/17-registry-restored
+  P4b did NOT reach two workers
+
+-- P4c: same work, plan capped at two steps
+  max_plan_steps → 2, covering sub agents inactive
+  skill workspace-auditor exposed=true
+  skill workspace-curator exposed=true
+  skill summarize-site exposed=true
+  shot p4-parallel-workers/18-two-step-cap-setup
+  shot p4-parallel-workers/19-live-parallel-workers
+  shot p4-parallel-workers/20-live-parallel-workers-mid
+  run e09060e5 completed mode=graph gates=0 failed_steps=0 routes=[["dynamic_worker","worker-alpha (workspace-auditor+workspace-curator)"],["dynamic_worker","worker-bravo (summarize-site)"]]
+  attempt 1: dynamic_worker=2 → [["dynamic_worker","worker-alpha (workspace-auditor+workspace-curator)"],["dynamic_worker","worker-bravo (summarize-site)"]]
+  plan: {"entries":[{"id":"s1","task":"Fully tidy the sandboxed workspace end-to-end: first audit the workspace (directory tree, file sizes, per-file metadata) to see what's there. Based on that, decide a sensible folder structure and where each file belongs, then move files into place. Afterwards, re-audit the workspace to confirm everything landed where intended. If anything is misplaced, adjust and re-check again. Repeat inspect -> judge -> move -> re-inspect until the workspace structure is correct and confirmed. Actually perform the moves — do not just produce a plan.","capability":{"id":null,"type":"spin_worker","skill_ids":["3314e365-5b9d-44d2-a55a-167852e237b7","69ff5756-8aac-4cf4-87dc-007acafa3167"]},"depends_on":[]},{"id":"s2","task":"Go through every file in the site folder one at a tim
+  shot p4-parallel-workers/21-parallel-workers-answer
+  shot p4-parallel-workers/22-parallel-workers-trace
+  skill workspace-auditor exposed=false
+  skill workspace-curator exposed=false
+  skill summarize-site exposed=false
+  shot p4-parallel-workers/23-registry-restored
+  P4c OK — two parallel workers
+
+=== P5 — multi-turn sequences ===
+
+-- A: history-only follow-up
+  shot p5-multiturn/hitl-gate
+  gate → approved
+  run 25558441 completed mode=graph gates=1 failed_steps=0 routes=[["custom_sub_agent","workspace-reporter"]]
+  shot p5-multiturn/A0-turn1-answer
+  run 5e2ca616 completed mode=graph gates=0 failed_steps=0 routes=[]
+  shot p5-multiturn/A1-turn2-history-only
+  shot p5-multiturn/A2-turn2-trace
+  A: turn1 rungs=[custom_sub_agent] | turn2 rungs=[] (turn 2 should be empty)
+
+-- B: escalation across turns
+  run 64f6dc07 completed mode=graph gates=0 failed_steps=0 routes=[["fallback","full-catalog fallback"],["fallback","workspace-auditor"]]
+  shot p5-multiturn/B0-turn1-readonly
+  run 81497d39 completed mode=graph gates=0 failed_steps=1 routes=[["fallback","full-catalog fallback"],["fallback","workspace-auditor"],["fallback","workspace-curator"]]
+  shot p5-multiturn/B1-turn2-escalated
+  shot p5-multiturn/B2-turn2-trace
+  B: turn1 routes=[["fallback","full-catalog fallback"],["fallback","workspace-auditor"]] | turn2 routes=[["fallback","full-catalog fallback"],["fallback","workspace-auditor"],["fallback","workspace-curator"]]
+
+-- C: deny path
+  run 25d986cb completed mode=graph gates=0 failed_steps=0 routes=[["fallback","full-catalog fallback"],["fallback","workspace-auditor"]]
+  shot p5-multiturn/C0-denied-answer
+  shot p5-multiturn/C1-denied-trace
+  C: status=completed gates=0 routes=[["fallback","full-catalog fallback"],["fallback","workspace-auditor"]]
+
+-- D: stop + queued message
+  shot p5-multiturn/D0-live-before-stop
+  shot p5-multiturn/D1-queued-message-typed
+  shot p5-multiturn/D2-after-stop
+  D: stopped run 675b5ad9 → cancelled
+  run 675b5ad9 cancelled mode=graph gates=0 failed_steps=0 routes=[["custom_sub_agent","research-concierge"],["native_sub_agent","workspace-warden"]]
+  shot p5-multiturn/D3-queued-message-ran
+  D: follow-up run 675b5ad9 cancelled routes=[["custom_sub_agent","research-concierge"],["native_sub_agent","workspace-warden"]]
+
+-- E: fallback does not persist across turns
+  shot p5-multiturn/hitl-gate
+  gate → approved
+  run 9df7b9a4 completed mode=graph gates=1 failed_steps=0 routes=[["custom_sub_agent","site-analyst"]]
+  shot p5-multiturn/E0-turn1-covered
+  run aa9d5920 completed mode=graph gates=0 failed_steps=0 routes=[["fallback","full-catalog fallback"]]
+  shot p5-multiturn/E1-turn2-fallback
+  run ed4d31d9 completed mode=graph gates=0 failed_steps=0 routes=[["fallback","full-catalog fallback"]]
+  shot p5-multiturn/E2-turn3-no-leak
+  shot p5-multiturn/E3-turn3-trace
+  E: t1=[custom_sub_agent] t2=[fallback] t3=[fallback] — t3 must not contain 'fallback' unless it genuinely re-escalated
+
+=== P5b — deny path and stop+queue, redone ===
+
+-- C(redo): deny path
+  run de8ac2ff completed mode=graph gates=0 failed_steps=0 routes=[["fallback","full-catalog fallback"]]
+  shot p5-multiturn/C0-denied-answer
+  shot p5-multiturn/C1-denied-trace
+  C(redo): status=completed gates=0 routes=[["fallback","full-catalog fallback"]]
+  C(redo): hitl steps=[]
+
+-- D(redo): stop + queued message
+  shot p5-multiturn/D0-live-before-stop
+  shot p5-multiturn/D1-message-queued
+  stopped de29642c
+  shot p5-multiturn/D2-after-stop
+  queued message started run dfb2759f
+  run dfb2759f completed mode=graph gates=0 failed_steps=0 routes=[["fallback","full-catalog fallback"],["fallback","workspace-auditor"]]
+  shot p5-multiturn/D3-queued-message-ran
+  shot p5-multiturn/D4-queued-trace
+  D(redo): stopped=cancelled | queued run dfb2759f completed routes=[["fallback","full-catalog fallback"],["fallback","workspace-auditor"]]
+
+-- C(pinned): deny a gate, with a note
+  target pinned → research-concierge
+  shot p5-multiturn/hitl-gate
+  gate → DENIED
+  run 3d8cae0b completed mode=direct gates=1 failed_steps=0 routes=[["custom_sub_agent","research-concierge"]]
+  shot p5-multiturn/C2-pinned-denied-answer
+  shot p5-multiturn/C3-pinned-denied-trace
+  C(pinned): completed gates=1 routes=[["custom_sub_agent","research-concierge"]]
+  C(pinned): hitl=[["completed","{\"note\":\"not yet — I will circulate it manually\",\"status\":\"denied\",\"node_type\":\"hitl\"}"]]

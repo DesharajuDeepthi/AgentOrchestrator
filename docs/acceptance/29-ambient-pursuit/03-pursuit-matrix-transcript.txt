@@ -1,0 +1,34 @@
+# §14f-45..47 — ambient pursuit against live SMTP + SMS-gateway sinks
+# UTC hour 23; quiet hours for the non-quiet scenarios: ["23:58","23:59"]
+# notification budget raised to 20 for this stage so five interrupts fit
+# (budget behavior itself is proven by §14c-26 and the M41 unit suite)
+
+✓ frame 00-settings-pursuit-away
+# waiting for the ambient tick to flush inside the app process…
+✓ frame 01-away-watching-toast-no-external
+PASS  §14f-45  away + watching → toast fires, external channels HELD
+      toast: shown | smtp +0 | webhook +0 | ledger: null
+
+# browser closed; waiting for the SSE stream to unregister (keepalive 15s)
+PASS  §14f-46  away + nobody watching → both external channels PURSUE
+      smtp +1 | webhook +1 | ledger: {"email":{"at":"2026-08-28T23:30:48.117012+00:00","ok":true,"error":null},"webhook":{"at":"2026-08-28T23:30:48.161645+00:00","ok":true,"error":null}}
+
+  --- the SMTP sink actually received ---
+  from=<concierge@local> to=["<owner@local>"]
+  From: concierge@local
+  To: owner@local
+  Subject: [concierge] ambient interrupt: 1 item(s)
+  • [ops · urgency 5] PURSUIT 46: away + nobody watching
+  --- the SMS-gateway-shaped webhook sink actually received ---
+  POST /push  {"kind":"ambient_delivery","mode":"interrupt","items":[{"id":"430894d3-f689-4a79-805a-ccf193a2fe59","category":"ops","tier":0,"urgency":5,"title":"PURSUIT 46: away + nobody watching","body":"M41 pursuit proof."}]}
+
+PASS  §14f-47a quiet hours 23:00-00:59 beat pursuit → demoted, NOTHING sent
+      tier 2 (demoted from 0) | delivered_at null | smtp +0 | webhook +0
+PASS  §14f-47b pursuit 'off' + nobody watching → in-app only, nothing external
+      delivered in-app: yes | smtp +0 | webhook +0 | ledger: null
+PASS  §14f-47c pursuit 'always' + watching → external fires anyway (pre-M41 default)
+      smtp +1 | webhook +1 | ledger: {"email":{"at":"2026-08-28T23:32:48.599808+00:00","ok":true,"error":null},"webhook":{"at":"2026-08-28T23:32:48.609367+00:00","ok":true,"error":null}}
+✓ frame 02-inbox-pursued-deliveries
+
+# restored: pursuit=always ambient=true quiet=["23:58","23:59"] budget=20 channels={"interrupt":["in_app","email","webhook"]}
+# 5/5 scenarios passed

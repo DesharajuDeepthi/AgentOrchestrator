@@ -1,0 +1,11 @@
+Stage 27 — §7.5 opt-in history summary for direct invocations
+
+visibility: hidden for orchestrator ✓, hidden on first pinned message ✓
+seed run 3d6b3798: completed mode=direct summary_flag=false
+visibility: appears once the pinned conversation has a completed run ✓
+cold run 271d59e9: flag=false task_verbatim=true summary_steps=0
+ctx run 6d08e907: flag=true summary_steps=1 task_composed=true answer_has_1.45=true
+invoke API without conversation_id → 422 (include_history_summary requires a conversation_id — a fresh conversation has no history to summarize)
+invoke-API ctx run 913bb4a4: completed flag=true summary_steps=1 answer_has_total=true
+chat API flag without target → 422 (orchestrator always gets history)
+PART 27 COMPLETE — history summary verified end to end

@@ -1,0 +1,86 @@
+{
+  "config": "judge_live",
+  "judge_model": "openrouter:qwen/qwen3.8-max",
+  "set_precision": 1.0,
+  "set_recall": 1.0,
+  "set_f1": 1.0,
+  "false_alarms": 0,
+  "reaction_ticks": [
+    0,
+    1,
+    0
+  ],
+  "max_reaction_ticks": 1,
+  "judge_usage": {
+    "calls": 7,
+    "input_tokens": 3880,
+    "output_tokens": 1609
+  },
+  "wall_s": 44.5,
+  "scenarios": [
+    {
+      "scenario": "noise_storm",
+      "tp": 0,
+      "fp": 0,
+      "fn": 0,
+      "fired": [],
+      "expected": []
+    },
+    {
+      "scenario": "real_incident",
+      "tp": 1,
+      "fp": 0,
+      "fn": 0,
+      "fired": [
+        "incident"
+      ],
+      "expected": [
+        "incident"
+      ]
+    },
+    {
+      "scenario": "absence_timer",
+      "tp": 1,
+      "fp": 0,
+      "fn": 0,
+      "fired": [
+        "pattern_absence"
+      ],
+      "expected": [
+        "pattern_absence"
+      ]
+    },
+    {
+      "scenario": "absence_satisfied",
+      "tp": 0,
+      "fp": 0,
+      "fn": 0,
+      "fired": [],
+      "expected": []
+    },
+    {
+      "scenario": "sequence_pattern",
+      "tp": 1,
+      "fp": 0,
+      "fn": 0,
+      "fired": [
+        "pattern_matched"
+      ],
+      "expected": [
+        "pattern_matched"
+      ]
+    },
+    {
+      "scenario": "schedule_fire",
+      "tp": 1,
+      "fp": 0,
+      "fn": 0,
+      "fired": [
+        "routine_schedule"
+      ],
+      "expected": [
+        "routine_schedule"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,54 @@
+[m43b] waiting for the live judge…
+[m43b] waiting for the live judge…
+[m43b] waiting for the live judge…
+[m43b] escalate row judged: {
+  tier: 0,
+  delivered: true,
+  verdict: 'escalate',
+  decision: null,
+  judge_reward: null,
+  DELIVERY_feedback: null,
+  DELIVERY_reward: null
+}
+[m43b] decline row judged: {
+  tier: 0,
+  delivered: true,
+  verdict: 'drop',
+  decision: null,
+  judge_reward: null,
+  DELIVERY_feedback: null,
+  DELIVERY_reward: null
+}
+[m43b] shot 20-v2-applied
+[m43b] after Do it: {
+  tier: 2,
+  delivered: false,
+  verdict: 'escalate',
+  decision: 'applied',
+  judge_reward: 1,
+  DELIVERY_feedback: null,
+  DELIVERY_reward: null
+}
+[m43b] shot 21-v2-undone
+[m43b] after Undo: {
+  tier: 0,
+  delivered: true,
+  verdict: 'escalate',
+  decision: 'undone',
+  judge_reward: -1,
+  DELIVERY_feedback: null,
+  DELIVERY_reward: null
+}
+[m43b] shot 22-v2-declined
+[m43b] after Leave it: {
+  tier: 0,
+  delivered: true,
+  verdict: 'drop',
+  decision: 'declined',
+  judge_reward: -1,
+  DELIVERY_feedback: null,
+  DELIVERY_reward: null
+}
+[m43b] console/page errors: 1 [
+  'Failed to load resource: the server responded with a status of 404 (Not Found)'
+]

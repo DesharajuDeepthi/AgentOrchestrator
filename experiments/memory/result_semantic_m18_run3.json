@@ -1,0 +1,92 @@
+{
+  "summary": {
+    "config": "semantic",
+    "passed": 7,
+    "total": 7,
+    "by_ability": {
+      "information_extraction": "2/2",
+      "multi_session": "1/1",
+      "knowledge_update": "1/1",
+      "temporal": "1/1",
+      "abstention": "1/1",
+      "preference": "1/1"
+    },
+    "question_input_tokens": 82414,
+    "question_output_tokens": 4839,
+    "setup_input_tokens": 81118,
+    "mean_question_latency_s": 16.4,
+    "memories_active": 8
+  },
+  "detail": [
+    {
+      "probe": "single_fact_recall",
+      "ability": "information_extraction",
+      "passed": true,
+      "reason": "ok",
+      "answer_head": "Your dog's name is Biscuit (fact 5601fee0).",
+      "input_tokens": 5378,
+      "output_tokens": 174,
+      "latency_s": 5.1
+    },
+    {
+      "probe": "second_fact_recall",
+      "ability": "information_extraction",
+      "passed": true,
+      "reason": "ok",
+      "answer_head": "Your preferred code editor is Neovim (preference bfad89ec).",
+      "input_tokens": 5649,
+      "output_tokens": 164,
+      "latency_s": 5.1
+    },
+    {
+      "probe": "multi_session_reasoning",
+      "ability": "multi_session",
+      "passed": true,
+      "reason": "ok",
+      "answer_head": "**No.** Q3 revenue did not hit the target. | | | |---|---| | **Target** | $2,000,000 | | **Actual** | $1,500,000 | | **Hit Target?** | \u274c No | Q3 came in $500,00",
+      "input_tokens": 31601,
+      "output_tokens": 2225,
+      "latency_s": 41.5
+    },
+    {
+      "probe": "knowledge_update",
+      "ability": "knowledge_update",
+      "passed": true,
+      "reason": "ok",
+      "answer_head": "**release-2026** \u2014 this supersedes the earlier \"main\" reference, per your correction [fact 592e8d12].",
+      "input_tokens": 5801,
+      "output_tokens": 293,
+      "latency_s": 8.1
+    },
+    {
+      "probe": "temporal_before_after",
+      "ability": "temporal",
+      "passed": true,
+      "reason": "ok",
+      "answer_head": "**main** \u2014 this was the branch on record before your correction to \"release-2026\" [episode 19084d57, episode 10878734].",
+      "input_tokens": 5851,
+      "output_tokens": 240,
+      "latency_s": 6.1
+    },
+    {
+      "probe": "abstention",
+      "ability": "abstention",
+      "passed": true,
+      "reason": "ok",
+      "answer_head": "I don't have your cat's name on record, though I do know your dog is named **Biscuit**!",
+      "input_tokens": 21858,
+      "output_tokens": 513,
+      "latency_s": 13.2
+    },
+    {
+      "probe": "preference_following",
+      "ability": "preference",
+      "passed": true,
+      "reason": "ok",
+      "answer_head": "Here are some solid tips for naming variables in Python: 1. **Use snake_case** \u2014 lowercase words separated by underscores, e.g. `user_count`, `total_price`. 2. ",
+      "input_tokens": 6276,
+      "output_tokens": 1230,
+      "latency_s": 35.4
+    }
+  ]
+}

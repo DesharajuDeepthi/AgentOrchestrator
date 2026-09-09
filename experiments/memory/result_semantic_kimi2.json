@@ -1,0 +1,92 @@
+{
+  "summary": {
+    "config": "semantic",
+    "passed": 5,
+    "total": 7,
+    "by_ability": {
+      "information_extraction": "0/2",
+      "multi_session": "1/1",
+      "knowledge_update": "1/1",
+      "temporal": "1/1",
+      "abstention": "1/1",
+      "preference": "1/1"
+    },
+    "question_input_tokens": 35111,
+    "question_output_tokens": 4343,
+    "setup_input_tokens": 21575,
+    "mean_question_latency_s": 29.2,
+    "memories_active": 5
+  },
+  "detail": [
+    {
+      "probe": "single_fact_recall",
+      "ability": "information_extraction",
+      "passed": false,
+      "reason": "missing any of ['biscuit']",
+      "answer_head": "I don't know your dog's name \u2014 you haven't told me anything about your dog in our conversation.",
+      "input_tokens": 4534,
+      "output_tokens": 335,
+      "latency_s": 17.3
+    },
+    {
+      "probe": "second_fact_recall",
+      "ability": "information_extraction",
+      "passed": false,
+      "reason": "missing any of ['neovim']",
+      "answer_head": "I don't know which code editor you prefer \u2014 you haven't mentioned one in our conversation.",
+      "input_tokens": 4596,
+      "output_tokens": 325,
+      "latency_s": 12.2
+    },
+    {
+      "probe": "multi_session_reasoning",
+      "ability": "multi_session",
+      "passed": true,
+      "reason": "ok",
+      "answer_head": "No \u2014 we did not hit the Q3 revenue target. The target on record was $2,000,000 (episode 65b1307a), and actual Q3 revenue came in at $1,500,000 (episode 203fa646",
+      "input_tokens": 5090,
+      "output_tokens": 623,
+      "latency_s": 29.3
+    },
+    {
+      "probe": "knowledge_update",
+      "ability": "knowledge_update",
+      "passed": true,
+      "reason": "ok",
+      "answer_head": "release-2026 (per the latest correction in episode 28d8e40a, which updated the earlier record of 'main' from fact 3e8e7272).",
+      "input_tokens": 3774,
+      "output_tokens": 577,
+      "latency_s": 24.3
+    },
+    {
+      "probe": "temporal_before_after",
+      "ability": "temporal",
+      "passed": true,
+      "reason": "ok",
+      "answer_head": "main \u2014 the deploy branch was previously recorded as 'main' (episode 335b2eb7) before being updated to 'release-2026' (episode 28d8e40a).",
+      "input_tokens": 5534,
+      "output_tokens": 540,
+      "latency_s": 27.3
+    },
+    {
+      "probe": "abstention",
+      "ability": "abstention",
+      "passed": true,
+      "reason": "ok",
+      "answer_head": "I don't know your cat's name \u2014 you haven't mentioned a cat in our conversation.",
+      "input_tokens": 5638,
+      "output_tokens": 271,
+      "latency_s": 25.3
+    },
+    {
+      "probe": "preference_following",
+      "ability": "preference",
+      "passed": true,
+      "reason": "ok",
+      "answer_head": "Here are practical tips for naming variables in Python: 1. **Follow PEP 8 conventions**: use `snake_case` for variables and functions (`user_count`, `total_pric",
+      "input_tokens": 5945,
+      "output_tokens": 1672,
+      "latency_s": 69.0
+    }
+  ]
+}

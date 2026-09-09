@@ -1,0 +1,16 @@
+[m44c] created: d300de6e-7712-477d-a2bf-b23f4469eea8 | embeddings now: 1
+[m44c] tombstones: 1 | memories left: 0
+[m44c] shot 08-forgotten-with-embedding
+[m44c] run started a885b3eb-f4e1-42c7-9134-71b8b3b9b3c1
+[m44c] run completed
+[m44c] third run: completed
+[m44c] waiting: the SEMANTIC gate to refuse
+[m44c] waiting: the SEMANTIC gate to refuse
+[m44c] waiting: the SEMANTIC gate to refuse
+[m44c] waiting: the SEMANTIC gate to refuse
+[m44c] waiting: the SEMANTIC gate to refuse
+[m44c] semantic suppressed: false | re-admitted rows: 1
+[m44c] shot 09-semantic-suppression-counted
+[m44c] console/page errors: 1 [
+  'Failed to load resource: the server responded with a status of 404 (Not Found)'
+]

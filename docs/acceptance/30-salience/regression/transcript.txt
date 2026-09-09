@@ -1,0 +1,11 @@
+  ✓ chat-04-fallback-answer
+fallback run: status=failed steps=plan,route,skill,tool_call,tool_call,tool_call,tool_call,tool_call,tool_call,tool_call,tool_call,tool_call,tool_call,tool_call,tool_call,tool_call,tool_call
+  ✓ chat-05-runs-list
+  ✓ chat-06-trace-drawer-step-timeline
+
+total runs: 7 | statuses: ["failed","cancelled","cancelled","cancelled","cancelled","completed","completed"]
+failed runs: 1
+
+attempt 1: status=completed steps=9 err=none
+  ✓ captured chat-04-fallback-answer on attempt 1
+fallback converged

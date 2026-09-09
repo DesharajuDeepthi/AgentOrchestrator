@@ -1,0 +1,20 @@
+39 delivery: tier 2 | title: [stub-open] remote task completed | fenced: true | result: true
+39 no recheck run: newest run is still the park run → true
+✓ 39-02-inbox-a2a-delivery
+✓ 40-01-skills-before-drift
+drift: {"skills":["research","summarize","translate"]}
+✓ 40-02-skills-after-drift
+40 stub-open tools: stub-open.summarize[active], stub-open.research[active], stub-open.translate[active]
+✓ 40-03-tools-page-translate
+40b-parkask: run completed, parked-note=true
+40b task state after poller: input-required
+40b needs-input delivery: tier-1: [stub-open] remote task needs your input
+✓ 40-04-drawer-parked-question
+40b after reply: completed
+✓ 40-05-drawer-replied
+40c-parklong: run completed, parked-note=true
+40c parked row: parked
+40c after drawer cancel: canceled
+40c REMOTE state: canceled
+✓ 40-06-drawer-cancelled
+pageerrors: none

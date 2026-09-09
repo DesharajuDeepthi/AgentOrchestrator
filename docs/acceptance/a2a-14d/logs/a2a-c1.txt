@@ -1,0 +1,14 @@
+a2a_enabled (boot default): false
+nav has Remote Agents while dark: false
+✓ 33-01-nav-dark-no-remote-agents
+POST /remote-agents while dark → 409
+body: {"detail":"a2a is disabled (a2a_enabled=false)"}
+PATCH a2a_enabled=true → 200
+✓ 33-02-nav-lit-remote-agents
+✓ 34-01-page-empty
+✓ 34-02-register-form
+✓ 34-03-agent-row
+✓ 34-04-detail-card-skills-open-auth
+✓ 34-05-tools-kind-a2a
+a2a tools: stub-open.research [active], stub-open.summarize [active]
+pageerrors: none

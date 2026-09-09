@@ -1,0 +1,70 @@
+[m43b] waiting for the judge on the low-value item…
+[m43b] waiting for the judge on the low-value item…
+[m43b] escalate row: {
+  tier: 0,
+  delivered: true,
+  seen: false,
+  verdict: 'escalate',
+  conf: 0.9,
+  decision: null,
+  by: null,
+  feedback: null,
+  reward: null
+}
+[m43b] decline row: {
+  tier: 0,
+  delivered: true,
+  seen: false,
+  verdict: 'drop',
+  conf: 0.98,
+  decision: null,
+  by: null,
+  feedback: null,
+  reward: null
+}
+[m43b] shot 10-escalate-proposal
+[m43b] shot 11-why-this
+[m43b] shot 12-escalate-applied
+[m43b] after Do it: {
+  tier: 2,
+  delivered: false,
+  seen: true,
+  verdict: 'escalate',
+  conf: 0.9,
+  decision: 'applied',
+  by: 'user',
+  feedback: 'accepted',
+  reward: 0.64
+}
+[m43b] digest preview leads with: [
+  'Payments API error rate 9.4% and climbing',
+  'Payment webhook signature check failing since '
+]
+[m43b] shot 13-escalate-undone
+[m43b] after Undo: {
+  tier: 0,
+  delivered: true,
+  seen: true,
+  verdict: 'escalate',
+  conf: 0.9,
+  decision: 'undone',
+  by: 'user',
+  feedback: 'dismissed',
+  reward: -1
+}
+[m43b] shot 14-low-value-proposal
+[m43b] shot 15-declined
+[m43b] after Leave it: {
+  tier: 0,
+  delivered: true,
+  seen: true,
+  verdict: 'drop',
+  conf: 0.98,
+  decision: 'declined',
+  by: 'user',
+  feedback: 'dismissed',
+  reward: -1
+}
+[m43b] console/page errors: 1 [
+  'Failed to load resource: the server responded with a status of 404 (Not Found)'
+]

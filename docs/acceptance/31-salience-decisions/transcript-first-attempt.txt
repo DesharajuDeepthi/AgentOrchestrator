@@ -1,0 +1,16 @@
+[m43] shot 00-salience-model-picker
+[m43] shot 01-extraction-model-picker
+[m43] fired; waiting for the ambient tick to flush + judge…
+[m43] delivery: undefined
+[m43] shot 02-proposal-do-it-leave-it
+[m43] shot 03-why-this-open
+[m43] shot 04-applied
+file:///tmp/claude-0/-home-user-concierge-agent/42b28fd8-c8ea-5ded-b71d-aa8262ee5dbc/scratchpad/m43-31.mjs:92
+    tier: applied.tier,
+                  ^
+
+TypeError: Cannot read properties of undefined (reading 'tier')
+    at file:///tmp/claude-0/-home-user-concierge-agent/42b28fd8-c8ea-5ded-b71d-aa8262ee5dbc/scratchpad/m43-31.mjs:92:19
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+
+Node.js v22.22.2

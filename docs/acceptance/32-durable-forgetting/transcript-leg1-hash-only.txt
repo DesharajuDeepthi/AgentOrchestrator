@@ -1,0 +1,31 @@
+[m44] shot 00-settings-forget-controls
+[m44] run started caa8bbf1-4[m44] first run: timeout
+[m44] memory admitted: true [ 'The invoice S3 bucket is s3://acme-invoices-prod.' ]
+node:internal/modules/run_main:123
+    triggerUncaughtException(
+    ^
+
+page.goto: Target page, context or browser has been closed
+    at /tmp/claude-0/-home-user-concierge-agent/42b28fd8-c8ea-5ded-b71d-aa8262ee5dbc/scratchpad/m44-32.mjs:91:12 {
+  log: []
+}
+
+Node.js v22.22.2
+88f3-443c-9e55-ddfdc2aac820
+[m44] run completed
+[m44] second run: completed
+[m44] waiting: the gate to refuse re-admission
+[m44] waiting: the gate to refuse re-admission
+[m44] waiting: the gate to refuse re-admission
+[m44] waiting: the gate to refuse re-admission
+[m44] waiting: the gate to refuse re-admission
+[m44] suppressed: false | re-admitted rows: 1
+[m44] shot 04-suppression-counted
+[m44] tombstones after Unforget: 0
+[m44] shot 05-unforgotten
+[m44] shot 06-proposal-pending
+[m44] shot 07-proposal-rejected
+[m44] proposal rejected via UI
+[m44] console/page errors: 1 [
+  'Failed to load resource: the server responded with a status of 404 (Not Found)'
+]

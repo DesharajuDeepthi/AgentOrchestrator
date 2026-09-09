@@ -1,0 +1,22 @@
+✓ frame 00-settings-salience-auto
+# browser closed; waiting 25s for the SSE stream to unregister
+inserted: hot=e8522227-8c4e-4596-b9fb-7a3138b60500 cold=1d4b982a-f120-473a-a0f0-1a99aabe972a
+# nobody is watching the stream — waiting for the tick to flush + judge…
+
+§14g-48 in_app ledger (hot):  {"in_app":{"at":"2026-08-29T00:01:37.316083+00:00","ok":false,"error":"no subscriber"}}
+§14g-48 in_app ledger (cold): {"in_app":{"at":"2026-08-29T00:01:37.316083+00:00","ok":false,"error":"no subscriber"}}
+§14g-49 salience (hot):  {"at":"2026-08-29T00:01:48.245818+00:00","mode":"auto","reason":"The alert reports an actively worsening payments-api p99 error rate (9.4% and rising) failing roughly one in eleven checkouts with no rollback yet performed—an ongoing, unmitigated revenue-impacting outage that requires human action, not a routine or resolved event.","applied":true,"verdict":"escalate","confidence":0.97}
+§14g-50 salience (cold): {"at":"2026-08-29T00:01:55.441404+00:00","mode":"auto","reason":"A routine cache warm completing in 41s with no anomalies is ephemeral operational noise explicitly requiring no action and carries no durable fact worth remembering.","applied":true,"verdict":"drop","confidence":0.97}
+unread badge: 1
+✓ frame 01-unread-badge-nav
+✓ frame 02-inbox-salience-verdicts
+
+hot after verdict: tier=2 delivered_at=null (escalate ⇒ tier 2, re-queued)
+cold after verdict: tier=0 delivered_at=set (drop ⇒ untouched)
+digest preview leads with: Payments API error rate 9.4% and climbing
+✓ frame 03-digest-preview-led-by-escalated
+
+§14g-48 seen: unread 1 -> 0 after opening one
+✓ frame 04-after-marking-seen
+
+# restored: salience=off ambient=false

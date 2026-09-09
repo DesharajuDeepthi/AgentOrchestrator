@@ -1,0 +1,9 @@
+Stage 26 — seeded native tier: workspace-warden through all four §7.5 surfaces
+
+registry: workspace-warden kind=native exposed=true covers=2 skills
+surface-3 (Invoke → button): run d5dabd8d status=completed mode=direct target=true rungs=[native_sub_agent] stages=[audit:completed,curate:failed]
+surface-4 (picker manual): run 78c7183c status=completed mode=direct target=true rungs=[native_sub_agent] stages=[audit:completed,curate:completed]
+surface-2 (POST /chat target): run 93ec4aca status=completed mode=direct target=true rungs=[native_sub_agent] stages=[audit:completed,curate:completed]
+surface-1 (POST /invoke): run 028d5a13 status=completed mode=direct target=true rungs=[native_sub_agent] stages=[audit:completed,curate:completed]
+surface-1 conversation 11744fe2 (fresh, chat-visible)
+PART 26 COMPLETE — native tier live on all four §7.5 surfaces (26b reshoot of frames 06/07)

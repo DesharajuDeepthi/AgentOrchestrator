@@ -1,0 +1,28 @@
+Stage 28 — declarative .agent.md static sub-agents (spec §3.4)
+
+registry: workspace-reporter kind=custom source=static status=active exposed=true provenance=file:workspace-reporter.agent.md
+workflow: audit → approve_report → write (skill nodes carry resolved uuids: true)
+gate run 4b25701e: completed mode=direct rungs=[custom_sub_agent] hitl_answers={"fmt":"markdown","extra":"Add a one-line recommendation at the end."}
+on disk:
+drwxr-xr-x 2 root root 4096 Aug  9 18:40 reports
+-rw-r--r-- 1 root root 3748 Aug 11 22:31 workspace-audit-report.md
+invoke-API run 97a637e8: completed mode=direct (deny path: no second report written)
+PART 28 COMPLETE — file-defined agent verified end to end
+  graph attempt 1: status=completed routed_to_reporter=false — retrying
+  graph attempt 2: status=completed routed_to_reporter=false — retrying
+  graph attempt 3: status=completed routed_to_reporter=false — retrying
+graph routed run 34037231: completed mode=graph target_pin=none dispatched_to=workspace-reporter route_rung=custom_sub_agent hitl=1
+agentic routed run f228a219: completed mode=agentic target_pin=none dispatched_to=workspace-reporter route_rung=custom_sub_agent hitl=1
+PART 28b COMPLETE — file-defined agent reached via orchestrator in BOTH modes
+
+— 28c coexistence matrix (md agent present in registry) —
+workspace-warden direct: run 4bd00d19 completed mode=direct ✓
+workspace-warden × graph (routed): run 00a5ad6a completed pin=none ✓
+workspace-warden × agentic (routed): run d69ac245 completed pin=none ✓
+research-concierge direct: run be840818 completed mode=direct ✓
+research-concierge × graph (routed): run cfacb9fe completed pin=none ✓
+research-concierge × agentic (routed): run d9e99503 completed pin=none ✓
+site-analyst direct (unexposed) → 403 ✓ (gating intact)
+site-analyst × graph (routed): run 6dfbde09 completed pin=none ✓
+site-analyst × agentic (routed): run dcd65c13 completed pin=none ✓
+PART 28c COMPLETE — every sub-agent kind verified alongside the md-defined agent

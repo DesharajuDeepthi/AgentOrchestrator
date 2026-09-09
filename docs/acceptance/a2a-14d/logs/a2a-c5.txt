@@ -1,0 +1,12 @@
+timeout→10s: 200
+39-park: run completed, parked-note=false
+✓ 39-01-parked-run-note
+39 parked row: parked 43da1fb8
+file:///tmp/claude-0/-home-user-concierge-agent/42b28fd8-c8ea-5ded-b71d-aa8262ee5dbc/scratchpad/a2a-c5.mjs:76
+if (!delivery) throw new Error('poller delivery never arrived')
+                     ^
+
+Error: poller delivery never arrived
+    at file:///tmp/claude-0/-home-user-concierge-agent/42b28fd8-c8ea-5ded-b71d-aa8262ee5dbc/scratchpad/a2a-c5.mjs:76:22
+
+Node.js v22.22.2

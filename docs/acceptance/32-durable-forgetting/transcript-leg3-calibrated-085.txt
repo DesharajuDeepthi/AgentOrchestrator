@@ -1,0 +1,9 @@
+[m44d] run started faab4559-431d-42b7-8dbd-c9c7a432a84d
+[m44d] run completed
+[m44d] waiting: calibrated gate
+[m44d] waiting: calibrated gate
+[m44d] waiting: calibrated gate
+[m44d] waiting: calibrated gate
+[m44d] waiting: calibrated gate
+[m44d] semantic suppressed: false | re-admitted rows: 1 | tombstone: {"suppressed":0}
+[m44d] shot 09-semantic-suppression-counted

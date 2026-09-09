@@ -1,0 +1,15 @@
+{
+  "mode": "live",
+  "minutes": 8,
+  "routine": "272765ad-1dfd-4f64-a9c0-b9fec05ad40b",
+  "events": 8,
+  "verdicts": {
+    "fired": 8
+  },
+  "run_statuses": {
+    "completed": 8
+  },
+  "stalled": 0,
+  "abstained_deliveries": 0,
+  "total_deliveries": 19
+}

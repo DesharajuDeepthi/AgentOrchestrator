@@ -1,0 +1,18 @@
+{
+  "mode": "sim",
+  "sim_days": 3,
+  "wall_s": 28.5,
+  "events_by_kind": {
+    "routine_schedule": 4,
+    "intent_poll_item": 1
+  },
+  "schedule_fires": 4,
+  "poll_checks": 80,
+  "poll_interval_min_s": 300,
+  "poll_interval_max_s": 3600,
+  "poll_interval_final_s": 3600,
+  "fires_by_day": {
+    "2026-08-25": 5
+  },
+  "digest_batches": 6
+}

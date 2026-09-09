@@ -1,0 +1,79 @@
+{
+  "baseline_floor_sweep": [
+    {
+      "floor": 2,
+      "judge_calls": 75,
+      "proposals_decided": 75,
+      "proposal_precision": 0.493,
+      "missed_critical": 0,
+      "per_category_endorsement": {
+        "prod-incidents": 0.9,
+        "build-noise": 0.067,
+        "batch-info": 0.533
+      },
+      "total_judge_reward": -1.0
+    },
+    {
+      "floor": 3,
+      "judge_calls": 60,
+      "proposals_decided": 60,
+      "proposal_precision": 0.483,
+      "missed_critical": 0,
+      "per_category_endorsement": {
+        "prod-incidents": 0.9,
+        "build-noise": 0.067
+      },
+      "total_judge_reward": -2.0
+    },
+    {
+      "floor": 4,
+      "judge_calls": 45,
+      "proposals_decided": 45,
+      "proposal_precision": 0.622,
+      "missed_critical": 0,
+      "per_category_endorsement": {
+        "prod-incidents": 0.9,
+        "build-noise": 0.067
+      },
+      "total_judge_reward": 11.0
+    },
+    {
+      "floor": 5,
+      "judge_calls": 15,
+      "proposals_decided": 15,
+      "proposal_precision": 0.867,
+      "missed_critical": 15,
+      "per_category_endorsement": {
+        "prod-incidents": 0.867
+      },
+      "total_judge_reward": 11.0
+    }
+  ],
+  "learner": {
+    "mode": "learner_auto",
+    "start_floor": 3,
+    "judge_calls": 55,
+    "proposals_decided": 55,
+    "proposal_precision": 0.655,
+    "missed_critical": 0,
+    "per_category_endorsement": {
+      "prod-incidents": 0.9,
+      "build-noise": 0.1,
+      "batch-info": 0.533
+    },
+    "floor_track": [
+      3,
+      3,
+      2,
+      2,
+      2,
+      2,
+      2
+    ],
+    "clamp_violations": 0,
+    "mutes": [
+      "salience:build-noise"
+    ],
+    "total_judge_reward": 17.0
+  }
+}

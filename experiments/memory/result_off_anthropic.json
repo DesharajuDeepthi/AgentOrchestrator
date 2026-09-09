@@ -1,0 +1,92 @@
+{
+  "summary": {
+    "config": "off",
+    "passed": 2,
+    "total": 7,
+    "by_ability": {
+      "information_extraction": "0/2",
+      "multi_session": "0/1",
+      "knowledge_update": "0/1",
+      "temporal": "0/1",
+      "abstention": "1/1",
+      "preference": "1/1"
+    },
+    "question_input_tokens": 109479,
+    "question_output_tokens": 8966,
+    "setup_input_tokens": 31620,
+    "mean_question_latency_s": 24.9,
+    "memories_active": 0
+  },
+  "detail": [
+    {
+      "probe": "single_fact_recall",
+      "ability": "information_extraction",
+      "passed": false,
+      "reason": "missing any of ['biscuit']",
+      "answer_head": "I don't have any information about your dog, so I don't know its name \u2014 could you tell me?",
+      "input_tokens": 5075,
+      "output_tokens": 170,
+      "latency_s": 5.1
+    },
+    {
+      "probe": "second_fact_recall",
+      "ability": "information_extraction",
+      "passed": false,
+      "reason": "missing any of ['neovim']",
+      "answer_head": "I don't have any information about your code editor preferences, so I can't say \u2014 let me know which one you prefer!",
+      "input_tokens": 5122,
+      "output_tokens": 212,
+      "latency_s": 6.1
+    },
+    {
+      "probe": "multi_session_reasoning",
+      "ability": "multi_session",
+      "passed": false,
+      "reason": "missing any of ['1.5']",
+      "answer_head": "I wasn't able to answer that \u2014 no Q3 revenue target or actual figure was found in memory or any accessible file (no spreadsheets, reports, or documents containi",
+      "input_tokens": 31064,
+      "output_tokens": 2992,
+      "latency_s": 56.9
+    },
+    {
+      "probe": "knowledge_update",
+      "ability": "knowledge_update",
+      "passed": false,
+      "reason": "missing any of ['release-2026']",
+      "answer_head": "That information isn't available to me right now \u2014 there's nothing stored in memory about it, and no CI/CD or deployment configuration files (e.g., `.github/wor",
+      "input_tokens": 36098,
+      "output_tokens": 3080,
+      "latency_s": 59.7
+    },
+    {
+      "probe": "temporal_before_after",
+      "ability": "temporal",
+      "passed": false,
+      "reason": "missing any of ['main']",
+      "answer_head": "I don't have any record of a prior deploy branch either \u2014 there's no deployment history, changelog, or CI/CD config in memory or the workspace that shows what i",
+      "input_tokens": 5500,
+      "output_tokens": 823,
+      "latency_s": 15.2
+    },
+    {
+      "probe": "abstention",
+      "ability": "abstention",
+      "passed": true,
+      "reason": "ok",
+      "answer_head": "I don't have any information about your cat's name \u2014 could you share it with me?",
+      "input_tokens": 20609,
+      "output_tokens": 345,
+      "latency_s": 12.2
+    },
+    {
+      "probe": "preference_following",
+      "ability": "preference",
+      "passed": true,
+      "reason": "ok",
+      "answer_head": "Here are some solid tips for naming variables in Python: 1. **Use snake_case**: Python convention (PEP 8) favors lowercase words separated by underscores, e.g.,",
+      "input_tokens": 6011,
+      "output_tokens": 1344,
+      "latency_s": 19.2
+    }
+  ]
+}

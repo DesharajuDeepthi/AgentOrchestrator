@@ -1,0 +1,88 @@
+{
+  "config": "tier1_only",
+  "judge_model": null,
+  "set_precision": 0.4,
+  "set_recall": 1.0,
+  "set_f1": 0.571,
+  "false_alarms": 6,
+  "reaction_ticks": [
+    0,
+    1,
+    0
+  ],
+  "max_reaction_ticks": 1,
+  "wall_s": 1.7,
+  "scenarios": [
+    {
+      "scenario": "noise_storm",
+      "tp": 0,
+      "fp": 5,
+      "fn": 0,
+      "fired": [
+        "noise0",
+        "noise1",
+        "noise2",
+        "noise3",
+        "noise4"
+      ],
+      "expected": []
+    },
+    {
+      "scenario": "real_incident",
+      "tp": 1,
+      "fp": 1,
+      "fn": 0,
+      "fired": [
+        "incident",
+        "postmortem"
+      ],
+      "expected": [
+        "incident"
+      ]
+    },
+    {
+      "scenario": "absence_timer",
+      "tp": 1,
+      "fp": 0,
+      "fn": 0,
+      "fired": [
+        "pattern_absence"
+      ],
+      "expected": [
+        "pattern_absence"
+      ]
+    },
+    {
+      "scenario": "absence_satisfied",
+      "tp": 0,
+      "fp": 0,
+      "fn": 0,
+      "fired": [],
+      "expected": []
+    },
+    {
+      "scenario": "sequence_pattern",
+      "tp": 1,
+      "fp": 0,
+      "fn": 0,
+      "fired": [
+        "pattern_matched"
+      ],
+      "expected": [
+        "pattern_matched"
+      ]
+    },
+    {
+      "scenario": "schedule_fire",
+      "tp": 1,
+      "fp": 0,
+      "fn": 0,
+      "fired": [
+        "routine_schedule"
+      ],
+      "expected": [
+        "routine_schedule"
+      ]
+    }
+  ]
+}

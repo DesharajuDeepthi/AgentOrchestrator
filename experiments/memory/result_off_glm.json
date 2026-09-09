@@ -1,0 +1,92 @@
+{
+  "summary": {
+    "config": "off",
+    "passed": 2,
+    "total": 7,
+    "by_ability": {
+      "information_extraction": "0/2",
+      "multi_session": "0/1",
+      "knowledge_update": "0/1",
+      "temporal": "0/1",
+      "abstention": "1/1",
+      "preference": "1/1"
+    },
+    "question_input_tokens": 62872,
+    "question_output_tokens": 5632,
+    "setup_input_tokens": 21659,
+    "mean_question_latency_s": 50.5,
+    "memories_active": 0
+  },
+  "detail": [
+    {
+      "probe": "single_fact_recall",
+      "ability": "information_extraction",
+      "passed": false,
+      "reason": "missing any of ['biscuit']",
+      "answer_head": "I don't have any information about your dog's name \u2014 could you tell me?",
+      "input_tokens": 3491,
+      "output_tokens": 169,
+      "latency_s": 16.3
+    },
+    {
+      "probe": "second_fact_recall",
+      "ability": "information_extraction",
+      "passed": false,
+      "reason": "missing any of ['neovim']",
+      "answer_head": "I don't have any information about which code editor you prefer \u2014 could you tell me?",
+      "input_tokens": 3521,
+      "output_tokens": 166,
+      "latency_s": 13.3
+    },
+    {
+      "probe": "multi_session_reasoning",
+      "ability": "multi_session",
+      "passed": false,
+      "reason": "missing any of ['1.5', '1,500,000']",
+      "answer_head": "I can't answer that \u2014 no Q3 revenue data is available anywhere I can check. There's no stored memory about revenue targets or actuals, and the workspace contain",
+      "input_tokens": 29842,
+      "output_tokens": 1357,
+      "latency_s": 95.1
+    },
+    {
+      "probe": "knowledge_update",
+      "ability": "knowledge_update",
+      "passed": false,
+      "reason": "missing any of ['release-2026']",
+      "answer_head": "The deployment source branch isn't documented in the workspace. All candidate documents (the firmware rollout summary, both firmware rollout research files, and",
+      "input_tokens": 14472,
+      "output_tokens": 1359,
+      "latency_s": 113.4
+    },
+    {
+      "probe": "temporal_before_after",
+      "ability": "temporal",
+      "passed": false,
+      "reason": "missing any of ['main']",
+      "answer_head": "I can't tell you the old deploy branch name \u2014 the workspace documents have already been checked and none of them name any branch, old or new. The only Git-relat",
+      "input_tokens": 3784,
+      "output_tokens": 744,
+      "latency_s": 35.4
+    },
+    {
+      "probe": "abstention",
+      "ability": "abstention",
+      "passed": true,
+      "reason": "ok",
+      "answer_head": "I don't have any information about your cat's name \u2014 could you tell me?",
+      "input_tokens": 3647,
+      "output_tokens": 159,
+      "latency_s": 16.2
+    },
+    {
+      "probe": "preference_following",
+      "ability": "preference",
+      "passed": true,
+      "reason": "ok",
+      "answer_head": "Here are some practical tips for naming variables in Python: 1. **Use snake_case**: `user_count`, `max_retries` \u2014 this is PEP 8 convention for variables and fun",
+      "input_tokens": 4115,
+      "output_tokens": 1678,
+      "latency_s": 63.7
+    }
+  ]
+}

@@ -1,0 +1,68 @@
+{
+  "shipped_operating_point": {
+    "threshold": 0.85,
+    "band": 0.7,
+    "anchors": true,
+    "false_admit_paraphrase": 0.025,
+    "false_suppress_other": 0.05
+  },
+  "threshold_only_at_085": {
+    "threshold": 0.85,
+    "band": 1.0,
+    "anchors": false,
+    "false_admit_paraphrase": 0.2,
+    "false_suppress_other": 0.025
+  },
+  "threshold_only_at_080": {
+    "threshold": 0.8,
+    "band": 1.0,
+    "anchors": false,
+    "false_admit_paraphrase": 0.0,
+    "false_suppress_other": 0.175
+  },
+  "shipped_is_on_frontier": false,
+  "pareto_frontier": [
+    {
+      "threshold": 0.82,
+      "band": 0.65,
+      "anchors": false,
+      "false_admit_paraphrase": 0.0,
+      "false_suppress_other": 0.125
+    },
+    {
+      "threshold": 0.82,
+      "band": 0.7,
+      "anchors": false,
+      "false_admit_paraphrase": 0.0,
+      "false_suppress_other": 0.125
+    },
+    {
+      "threshold": 0.82,
+      "band": 0.75,
+      "anchors": false,
+      "false_admit_paraphrase": 0.0,
+      "false_suppress_other": 0.125
+    },
+    {
+      "threshold": 0.82,
+      "band": 0.8,
+      "anchors": false,
+      "false_admit_paraphrase": 0.0,
+      "false_suppress_other": 0.125
+    },
+    {
+      "threshold": 0.82,
+      "band": 0.8,
+      "anchors": true,
+      "false_admit_paraphrase": 0.0,
+      "false_suppress_other": 0.125
+    },
+    {
+      "threshold": 0.86,
+      "band": 0.8,
+      "anchors": true,
+      "false_admit_paraphrase": 0.025,
+      "false_suppress_other": 0.0
+    }
+  ]
+}

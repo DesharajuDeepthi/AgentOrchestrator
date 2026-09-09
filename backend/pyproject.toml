@@ -1,0 +1,77 @@
+[project]
+name = "agentorchestrator-backend"
+version = "0.1.0"
+description = "AgentOrchestrator backend — tri-layer registry orchestration"
+requires-python = ">=3.12"
+dependencies = [
+    "fastapi>=0.115",
+    "uvicorn[standard]>=0.30",
+    "sqlalchemy[asyncio]>=2.0",
+    "asyncpg>=0.29",
+    "alembic>=1.13",
+    "pydantic>=2.7",
+    "pydantic-settings>=2.3",
+    "langchain>=1.0",
+    "langgraph>=1.0",
+    "langchain-anthropic>=1.0",
+    "langchain-google-genai>=3.0",
+    "langchain-openai>=1.0",
+    "langchain-mcp-adapters>=0.3",
+    "mcp>=1.24,<2.0",
+    "langgraph-checkpoint-postgres>=2.0",
+    "psycopg[binary]>=3.1",
+    "structlog>=24.1",
+    "opentelemetry-sdk>=1.25",
+    "opentelemetry-exporter-otlp-proto-http>=1.25",
+    "prometheus-client>=0.20",
+    "redis>=5.0",
+    "langsmith>=0.1",
+    "pyyaml>=6.0",
+    "sse-starlette>=2.1",
+    "greenlet>=3.0",
+    "pgvector>=0.3",
+    "croniter>=6.2.4",
+    "python-multipart>=0.0.9",
+    "openpyxl>=3.1",
+    "a2a-sdk>=0.3,<0.4",
+    "authlib>=1.6",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.2",
+    "pytest-asyncio>=0.23",
+    "httpx>=0.27",
+    "asgi-lifespan>=2.1",
+    "ruff>=0.5",
+    "mypy>=1.10",
+    "types-pyyaml",
+    "types-croniter>=6.2.4.20260711",
+    "types-authlib>=1.7.2.20260827",
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM", "ASYNC"]
+ignore = ["E501"]
+
+[tool.mypy]
+python_version = "3.12"
+strict = true
+plugins = ["pydantic.mypy"]
+
+[[tool.mypy.overrides]]
+module = ["langchain_mcp_adapters.*", "langgraph.*", "mcp.*", "openpyxl.*"]
+follow_untyped_imports = true
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
+asyncio_default_fixture_loop_scope = "session"
+asyncio_default_test_loop_scope = "session"
+
+[tool.uv]
+package = false

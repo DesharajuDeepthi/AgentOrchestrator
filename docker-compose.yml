@@ -1,0 +1,74 @@
+# Three core services (spec §2): db, backend, frontend — no broker, no
+# queue, no Celery. Postgres is the only required stateful infrastructure.
+# One command: docker compose up. A fourth service, redis, is profile-gated
+# (spec §7.3): opt in with `docker compose --profile redis up` + REDIS_URL;
+# the registry cache only uses it when the registry_cache_mode setting says so.
+services:
+  db:
+    # pgvector = official postgres image + extension (spec §16.1)
+    image: pgvector/pgvector:0.8.6-pg16
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-agentorchestrator}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-agentorchestrator}
+      POSTGRES_DB: ${POSTGRES_DB:-agentorchestrator}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U ${POSTGRES_USER:-agentorchestrator}']
+      interval: 3s
+      timeout: 3s
+      retries: 20
+
+  backend:
+    build: ./backend
+    environment:
+      DATABASE_URL: ${DATABASE_URL:-postgresql+asyncpg://agentorchestrator:agentorchestrator@db:5432/agentorchestrator}
+      ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY:-}
+      GOOGLE_API_KEY: ${GOOGLE_API_KEY:-}
+      OPENAI_API_KEY: ${OPENAI_API_KEY:-}
+      OPENROUTER_API_KEY: ${OPENROUTER_API_KEY:-}
+      FAKE_LLM_ENABLED: ${FAKE_LLM_ENABLED:-}
+      LANGSMITH_API_KEY: ${LANGSMITH_API_KEY:-}
+      OTEL_EXPORTER_OTLP_ENDPOINT: ${OTEL_EXPORTER_OTLP_ENDPOINT:-}
+      WORKSPACE_DIR: /workspace
+      LOG_LEVEL: ${LOG_LEVEL:-INFO}
+      REDIS_URL: ${REDIS_URL:-}
+      SMTP_HOST: ${SMTP_HOST:-}
+      SMTP_PORT: ${SMTP_PORT:-}
+      SMTP_USER: ${SMTP_USER:-}
+      SMTP_PASSWORD: ${SMTP_PASSWORD:-}
+      SMTP_FROM: ${SMTP_FROM:-}
+      SMTP_TO: ${SMTP_TO:-}
+      AMBIENT_WEBHOOK_URL: ${AMBIENT_WEBHOOK_URL:-}
+      CUSTOM_GATEWAY_BASE_URL: ${CUSTOM_GATEWAY_BASE_URL:-}
+      CUSTOM_GATEWAY_API_KEY: ${CUSTOM_GATEWAY_API_KEY:-}
+      CUSTOM_GATEWAY_MODELS: ${CUSTOM_GATEWAY_MODELS:-}
+      AUTH_ENABLED: ${AUTH_ENABLED:-}
+      FRONTEND_ORIGIN: ${FRONTEND_ORIGIN:-}
+    volumes:
+      - workspace:/workspace
+    ports:
+      - '${BACKEND_PORT:-8000}:8000'
+    depends_on:
+      db:
+        condition: service_healthy
+
+  # optional registry-cache backend (spec §7.3) — start with:
+  #   docker compose --profile redis up
+  # and set REDIS_URL=redis://redis:6379/0; the default stack never runs it
+  redis:
+    image: redis:7-alpine
+    profiles: [redis]
+    ports:
+      - '127.0.0.1:6379:6379'
+
+  frontend:
+    build: ./frontend
+    ports:
+      - '${FRONTEND_PORT:-5173}:80'
+    depends_on:
+      - backend
+
+volumes:
+  pgdata:
+  workspace:
